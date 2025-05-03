@@ -1,0 +1,18 @@
+<header>
+	<nav>
+		<ul>
+			<li><a href="{% url 'index' %}">Digital Portfolio</a></li>
+			<li><a href="{% url 'about' %}">About Me</a></li>
+			<li>Projects
+				<ul>
+					{% for P in Projects %}
+					<li><a href="{% url 'project' project_id=P.id%}">project {{P.id}}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+			<li>Algorithms</li>
+				<ul><li>algorithm n</li></ul>
+			<li>Favorite Topics</li>
+		</ul>
+	</nav>
+</header>

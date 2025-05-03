@@ -1,0 +1,20 @@
+{% include "info.html" %}
+{% include "nav.html" %}
+<main>
+	<title>{{Project.title}}</title>
+
+	<div class ="outer_container">
+		<div class="Project_Info">
+			<h1 class="proj_title">{{Project.title}}</h1>
+			<p class="proj_description">{{Project.project_description}}</p>
+			<p class="proj_technologies">{{Project.technologies}}</p>
+			<p class="proj_date">{{Project.date}}</p>
+		</div>
+
+		<div class="course_info">
+			<p class="proj_course">{{Project.course}}</p>
+			<p class="proj_course_description">{{Project.course_description}}</p>
+		</div>
+	</div>
+
+</main>
