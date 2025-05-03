@@ -4,7 +4,7 @@ from django.db import models
 class Project(models.Model):
 	title = models.CharField(max_length=100, blank=False) #Title 
 	project_description = models.TextField(blank=False) #Description in HTML
-	technologies = models.TextField(blank=False) #what was used to create the project.
+	technologies = models.TextField(blank=False) #what was used to create the 
 	date = models.DateField(blank=False) #Date the project was completed.
 	course = models.CharField(max_length=100, blank=False) #The course associated with the project
 	course_description = models.TextField(blank = False) # Description of the course associated with the project
