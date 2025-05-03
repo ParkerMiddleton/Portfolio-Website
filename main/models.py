@@ -1,3 +1,23 @@
 from django.db import models
 
-# Create your models here.
+#A general template for each Project
+class Project(models.Model):
+	title = models.CharField(max_length=100, blank=False) #Title 
+	project_description = models.TextField(blank=False) #Description in HTML
+	technologies = models.TextField(blank=False) #what was used to create the project.
+	date = models.DateField(blank=False) #Date the project was completed.
+	course = models.CharField(max_length=100, blank=False) #The course associated with the project
+	course_description = models.TextField(blank = False) # Description of the course associated with the project
+	#Code for projects??
+	demo_video = models.FileField(null=True,blank=True) #demo video 
+	code_video = models.FileField(null=True,blank=True) #code video
+
+#A General template for each algortihm upload
+class Algorithm(models.Model):
+	title = models.CharField(max_length=100, blank=False) #Algorithm Title
+	description = models.TextField(blank=False) #Description of the algorithm and why I like it
+	leetcode_video = models.FileField(null=True, blank=True) #a video demo of me using the algorithm
+
+class Topic(models.Model):
+	title = models.CharField(max_length=100, blank=False) #topic title
+	description = models.TextField(blank = False) #topic description
