@@ -1,40 +1,151 @@
+:root { 
+	/*Color pallete*/
+	--DARK: #333446;
+	--yellow: #ffee00;
+	--dark-yellow: #e1d63d;
+	--white: #efefef;
+ }
+
 * {
 	font-family: Arial, Helvetica, sans-serif;
-}
-
-nav {
-	border: red solid 1px;
-}
-.dropdown-choice {
-	position: relative;
-	cursor: pointer;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: white;
-	box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-	min-width: 200px;
-	z-index: 1;
-}
-
-.dropdown-content li {
-	list-style: none;
-}
-
-.dropdown-content li a {
-	display: block;
-	padding: 10px;
 	text-decoration: none;
-	color: black;
+	margin: 0rem;
+	padding: 0rem;
 }
 
-.dropdown-content li a:hover {
-	background-color: #f1f1f1;
+body{
+	background-color: var(--DARK);
+	color: var(--yellow)
 }
 
-/* Show dropdown on hover */
-.dropdown-choice:hover .dropdown-content {
+
+/* Navigation Bar */
+nav {
+	background-color:var(--DARK);
+	padding: 1rem;
+}
+
+nav ul {
+	display: flex;
+	justify-content: space-evenly;
+	list-style-type: none;
+	font-size: 1.2rem;
+	/* no bullets*/
+}
+
+nav ul li a {
+	text-decoration: none;
+	color: var(--yellow);
+	cursor:pointer;
+}
+
+nav ul li a:hover{
+	color: var(--white)
+}
+
+nav ul li{
+	color: var(--yellow);
+}
+
+nav ul li:hover{
+	color: var(--white);
+	border-radius: 15%;
+	box-shadow: inset;
+}
+
+nav ul li:hover ul li a{
+	color: var(--yellow);
+}
+
+nav ul li:hover ul li a:hover {
+	color: var(--white);
+	border-radius: 15%;
+}
+
+nav ul li ul {
+	display: none;
+}
+
+nav ul li:hover ul {
 	display: block;
+	flex-direction: column;
+	border: 5px solid var(--DARK);
+	position: absolute;
+	background-color: var(--DARK);
+	padding: 1rem;
 }
+
+
+/*Display functionaltiy*/
+.display{
+	display:flex;
+	flex-direction: column;
+}
+
+.content{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	gap: 2rem;
+}
+
+/* Title box (top)*/
+.title-box{
+	padding: 1rem;
+	background-color:var(--yellow);
+	border-bottom: 1px solid #EAEFEF;
+}
+
+.proj-title{
+	font-weight: bold;
+	font-size: 2rem;
+	color:var(--DARK);
+}
+
+.proj-technologies{
+	padding-top: 0.5rem;
+	font-size: 1.2rem;
+	color:var(--DARK);
+	font-style: italic;
+}
+
+.proj-date{
+	padding-top: 0.5rem;
+	font-size: 0.9rem;
+	color:var(--DARK);
+	font-style: italic;
+}
+
+
+
+/* Project Description (left) */
+.left{
+	padding: 1rem;
+	background-color:var(--DARK);
+	color:var(--yellow);
+}
+
+
+
+.center{
+	padding: 1rem;
+	background-color:var(--DARK);
+	color: var(--yellow);
+}
+
+.right{
+	justify-content: end;
+	padding: 1rem;
+	background-color:var(--DARK);
+	color: var(--yellow);
+}
+
+.minor-title{
+
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding-bottom: 1rem;
+
+}
+
+/* Project video, github code (right) */

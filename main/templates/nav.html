@@ -4,7 +4,7 @@
 			<li><a href="{% url 'index' %}">Digital Portfolio</a></li>
 			<li><a href="{% url 'about' %}">About Me</a></li>
 
-			<li class="dropdown-choice">Projects
+			<li class="dropdown-option">Projects
 				<ul class="dropdown-content">
 					{% for P in Projects %}
 					<li><a href="{% url 'project' project_id=P.id%}">{{P.title}}</a></li>
@@ -12,20 +12,20 @@
 				</ul>
 			</li>
 
-
-			<li class="dropdown_option">Algorithms</li>
-			<ul>
-				{% for A in Algorithms %}
-				<li><a href="{% url 'algorithm' algorithm_id=A.id%}">{{A.title}}</a></li>
-				{% endfor %}
-			</ul>
-			<li class="dropdown_option">Favorite Topics</li>
-			<ul>
-				{% for T in Topics %}
-				<li><a href="{% url 'topic' topic_id=T.id%}">{{T.title}}</a></li>
-				{% endfor %}
-			</ul>
-
+			<li class="dropdown-option">Algorithms
+				<ul class="dropdown-content">
+					{% for A in Algorithms %}
+					<li><a href="{% url 'algorithm' algorithm_id=A.id%}">{{A.title}}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+			<li class="dropdown-option">Favorite Topics
+				<ul class="dropdown-content">
+					{% for T in Topics %}
+					<li><a href="{% url 'topic' topic_id=T.id%}">{{T.title}}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
 		</ul>
 	</nav>
 </header>

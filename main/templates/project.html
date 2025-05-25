@@ -1,19 +1,35 @@
 {% include "info.html" %}
 {% include "nav.html" %}
 <main>
+
 	<title>{{Active_Project.title}}</title>
 
-	<div class ="outer_container">
-		<div class="Project_Info">
-			<h1 class="proj_title">{{Active_Project.title}}</h1>
-			<p class="proj_description">{{Active_Project.project_description}}</p>
-			<p class="proj_technologies">{{Active_Project.technologies}}</p>
-			<p class="proj_date">{{Active_Project.date}}</p>
+
+	<div class="display">
+
+		<div class="title-box">
+			<p class="proj-title">{{Active_Project.title}}</p>
+			<p class="proj-technologies">{{Active_Project.technologies}}</p>
+			<p class="proj-date">{{Active_Project.date}}</p>
 		</div>
 
-		<div class="course_info">
-			<p class="proj_course">{{Active_Project.course}}</p>
-			<p class="proj_course_description">{{Active_Project.course_description}}</p>
+		<div class="content">
+
+			<div class="left">
+				<p class="minor-title">Summary</p>
+				<p class="proj-description">{{Active_Project.project_description}}</p>
+			</div>
+
+			<div class="center">
+				<p class="github-code">Some github code</p>
+				<p class="video-demo">Some video walkthrough</p>
+			</div>
+
+			<div class="right">
+				<p class="minor-title">Associated Course</p>
+				<p class="proj-course">{{Active_Project.course}}</p>
+				<p class="proj-course-description">{{Active_Project.course_description}}</p>
+			</div>
 		</div>
 	</div>
 
