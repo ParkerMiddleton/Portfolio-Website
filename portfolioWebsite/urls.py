@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from main import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,4 @@ urlpatterns = [
 	path("project/<int:project_id>/",views.project, name="project"),
 	path("algorithm/<int:algorithm_id>/", views.algorithm, name="algorithm"),
 	path("topic/<int:topic_id>/", views.topic, name="topic")
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

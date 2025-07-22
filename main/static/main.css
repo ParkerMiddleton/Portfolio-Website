@@ -1,88 +1,137 @@
-:root { 
+:root {
 	/*Color pallete*/
-	--DARK: #333446;
-	--yellow: #ffee00;
-	--dark-yellow: #e1d63d;
-	--white: #efefef;
- }
+	--background: #121212;
+	--accent: #a32424;
+	--text: #EEEEEE;
+	--highlight: #be6363;
+	--mutedtext: #B0B0B0;
+}
 
 * {
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	text-decoration: none;
 	margin: 0rem;
 	padding: 0rem;
 }
 
-body{
-	background-color: var(--DARK);
-	color: var(--yellow)
+body {
+	background-color: var(--background);
+	color: var(--text)
 }
 
+/*Background images*/
+.project-pics {
+	width: 100%;
+	height: 35vh;
+	/* Half the viewport height */
+	background-image: url("/static/img/uofu1.jpg");
+	background-size: cover;
+	/* Fill container, crop as needed */
+	background-position: top;
+	/* Show the top of the image */
+	background-repeat: no-repeat;
+	z-index: -1;
+	/* Push behind navbar */
+	position: relative;
+	/* or 'absolute' depending on layout */
+}
 
 /* Navigation Bar */
 nav {
-	background-color:var(--DARK);
+	background-color: var(--background);
 	padding: 1rem;
+	position: relative;
+	z-index: 2;
+
 }
 
+/*main nav list container*/
 nav ul {
 	display: flex;
 	justify-content: space-evenly;
 	list-style-type: none;
 	font-size: 1.2rem;
-	/* no bullets*/
+	margin: 0;
+	padding: 0;
+}
+
+/* Nav links */
+nav ul li {
+	position: relative;
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	/* vertically center text */
+	height: 100%;
+	/* ensures equal alignment */
 }
 
 nav ul li a {
 	text-decoration: none;
-	color: var(--yellow);
-	cursor:pointer;
+	color: var(--text);
+	cursor: pointer;
+	display: inline-block;
+	padding: 0.5rem 1rem;
 }
 
-nav ul li a:hover{
-	color: var(--white)
+nav ul li a:hover {
+	color: var(--highlight)
 }
 
-nav ul li{
-	color: var(--yellow);
-}
-
-nav ul li:hover{
-	color: var(--white);
+/* Hover effect on a parent list item (projects, algorithms) */
+nav ul li:hover {
+	color: var(--highlight);
 	border-radius: 15%;
 	box-shadow: inset;
 }
 
-nav ul li:hover ul li a{
-	color: var(--yellow);
-}
-
-nav ul li:hover ul li a:hover {
-	color: var(--white);
-	border-radius: 15%;
-}
-
+/* Dropdown Menus */
 nav ul li ul {
-	display: none;
-}
-
-nav ul li:hover ul {
-	display: block;
-	flex-direction: column;
-	border: 5px solid var(--DARK);
+	opacity: 0;
+	transform: translateY(10px);
+	/* subtle slide */
+	pointer-events: none;
+	transition: opacity 0.25s ease, transform 0.25s ease;
 	position: absolute;
-	background-color: var(--DARK);
-	padding: 1rem;
+	/* directly below the parent */
+	top: 100%;
+	left: 0;
+	background-color: var(--background);
+	padding: 0.5rem 0;
+	/* On top of everything else */
+	z-index: 100;
+	min-width: 200px;
+	flex-direction: column;
+
 }
 
+/* Dropdown list items */
+nav ul li ul li {
+	width: 100%;
+}
+
+
+nav ul li ul li a:hover {
+	background-color: var(--highlight);
+	color: var(--background);
+	border-radius: 4px;
+	width: 100%;
+}
+
+/* Show dropdown on hover */
+nav ul li:hover>ul {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
 
 /*Display functionaltiy*/
-.display{
-	display:flex;
+.display {
+	display: flex;
 	flex-direction: column;
 }
 
-.content{
+.content {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
@@ -90,57 +139,98 @@ nav ul li:hover ul {
 }
 
 /* Title box (top)*/
-.title-box{
+.title-box {
+	font-family: 'Montserrat', sans-serif;
 	padding: 1rem;
-	background-color:var(--yellow);
 	border-bottom: 1px solid #EAEFEF;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: clamp(130px, 25vw, 300px);
+	/*Adujust this later to grow and shrink*/
+	display: flex;
+	position: relative;
+	/* needed for overlay effect for proj-title text*/
+	flex-direction: column;
+	justify-content: left;
+	opacity: 100%;
 }
 
-.proj-title{
+/* Background opaque effect*/
+.title-box::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+	z-index: 0;
+}
+
+.title-box>* {
+	position: relative;
+	z-index: 1;
+}
+
+@keyframes slideInFromLeft {
+	0% {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.proj-title {
+	animation: slideInFromLeft 1.2s ease-out forwards;
 	font-weight: bold;
-	font-size: 2rem;
-	color:var(--DARK);
+	font-size: clamp(2rem, 4vw, 4rem);
+	color: whitesmoke;
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-.proj-technologies{
+.proj-technologies {
+	animation: slideInFromLeft 1.4s ease-in forwards;
 	padding-top: 0.5rem;
-	font-size: 1.2rem;
-	color:var(--DARK);
+	font-size: clamp(1.2rem, 2vw, 2.4rem);
+	color: whitesmoke;
 	font-style: italic;
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-.proj-date{
+.proj-date {
+	animation: slideInFromLeft 1.7s ease-in forwards;
 	padding-top: 0.5rem;
-	font-size: 0.9rem;
-	color:var(--DARK);
+	font-size: clamp(0.9rem, 1.5vw, 1.8rem);
+	color: whitesmoke;
 	font-style: italic;
+	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
-
 
 
 /* Project Description (left) */
-.left{
+.left {
 	padding: 1rem;
-	background-color:var(--DARK);
-	color:var(--yellow);
-}
-
-
-
-.center{
-	padding: 1rem;
-	background-color:var(--DARK);
+	background-color: var(--DARK);
 	color: var(--yellow);
 }
 
-.right{
+
+
+.center {
+	padding: 1rem;
+	background-color: var(--DARK);
+	color: var(--yellow);
+}
+
+.right {
 	justify-content: end;
 	padding: 1rem;
-	background-color:var(--DARK);
+	background-color: var(--DARK);
 	color: var(--yellow);
 }
 
-.minor-title{
+.minor-title {
 
 	font-size: 1.5rem;
 	font-weight: bold;
@@ -148,4 +238,67 @@ nav ul li:hover ul {
 
 }
 
-/* Project video, github code (right) */
+
+
+
+/* code container */
+.code-container {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	gap: 1rem;
+}
+
+.code-wrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 100%;
+}
+
+.code-title {
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin: 1rem 0 0.5rem;
+	color: var(--yellow);
+	font-family: 'Segoe UI', sans-serif;
+}
+
+.code-box {
+	background-color: #1e1e1e;
+	/* Dark theme background */
+	color: #d4d4d4;
+	/* Light text */
+	border-radius: 10px;
+	padding: 1rem;
+	max-height: 400px;
+	/* Controls the scroll area height */
+	overflow: auto;
+	/* Enables vertical + horizontal scroll */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	font-family: 'Fira Code', monospace;
+	/* or your preferred code font */
+}
+
+.code-nav {
+	background-color: var(--DARK);
+	padding: 1rem;
+}
+
+
+.code-nav ul {
+	display: flex;
+	justify-content: space-evenly;
+	list-style-type: none;
+	font-size: 1.2rem;
+	/* no bullets*/
+}
+
+.code-nav ul li div {
+	text-decoration: none;
+	color: var(--highlight);
+	cursor: pointer;
+}
+
+.code-nav ul li div:hover {
+	color: var(--text)
+}

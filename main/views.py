@@ -22,11 +22,16 @@ def project(request, project_id):
 	active_project = get_object_or_404(models.Project, id=project_id) #Active Project
 	projects, algorithms, topics = getModelCollections()
 
+	url_list = parse_URLs(active_project.code_urls)
+
+	print(active_project.title_image.url)
+
 	return render(request, "project.html", {
 		"Active_Project": active_project, 
 		"Projects": projects, 
 		"Algorithms": algorithms, 
-		"Topics": topics})
+		"Topics": topics,
+		"url_list": url_list})
 
 #algorithm.html
 def algorithm(request, algorithm_id):
@@ -56,3 +61,7 @@ def getModelCollections():
 	algorithms = models.Algorithm.objects.all()#All Algorithms
 	topics = models.Topic.objects.all()#All topics
 	return projects, algorithms, topics
+
+def parse_URLs(URLstring):
+	url_list = URLstring.split(",")
+	return url_list	

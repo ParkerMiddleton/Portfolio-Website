@@ -4,10 +4,10 @@
 
 	<title>{{Active_Project.title}}</title>
 
+	{{ url_list|json_script:"codeURLS"}}
 
 	<div class="display">
-
-		<div class="title-box">
+		<div class="title-box" style="background-image: url({{Active_Project.title_image.url}});">
 			<p class="proj-title">{{Active_Project.title}}</p>
 			<p class="proj-technologies">{{Active_Project.technologies}}</p>
 			<p class="proj-date">{{Active_Project.date}}</p>
@@ -31,6 +31,22 @@
 				<p class="proj-course-description">{{Active_Project.course_description}}</p>
 			</div>
 		</div>
+
+		<!-- Code display -->
+		<div class="code-container">
+			<div class="code-wrapper">
+
+				<div class="code-box">
+					<nav class="code-nav">
+						<ul class="code-name-list" id="code-name-list">
+
+						</ul>
+					</nav>
+					<pre><code id="GHCode" class="language-csharp"></code></pre>
+				</div>
+			</div>
+		</div>
 	</div>
+
 
 </main>

@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'main/static',  # Adjust if your static folder is elsewhere
 ]
