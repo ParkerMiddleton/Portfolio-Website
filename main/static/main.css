@@ -7,17 +7,7 @@
 	--mutedtext: #B0B0B0;
 }
 
-* {
-	font-family: 'Open Sans', sans-serif;
-	text-decoration: none;
-	margin: 0rem;
-	padding: 0rem;
-}
 
-body {
-	background-color: var(--background);
-	color: var(--text)
-}
 
 /*Background images*/
 .project-pics {
@@ -36,94 +26,6 @@ body {
 	/* or 'absolute' depending on layout */
 }
 
-/* Navigation Bar */
-nav {
-	background-color: var(--background);
-	padding: 1rem;
-	position: relative;
-	z-index: 2;
-
-}
-
-/*main nav list container*/
-nav ul {
-	display: flex;
-	justify-content: space-evenly;
-	list-style-type: none;
-	font-size: 1.2rem;
-	margin: 0;
-	padding: 0;
-}
-
-/* Nav links */
-nav ul li {
-	position: relative;
-	color: var(--text);
-	display: flex;
-	align-items: center;
-	/* vertically center text */
-	height: 100%;
-	/* ensures equal alignment */
-}
-
-nav ul li a {
-	text-decoration: none;
-	color: var(--text);
-	cursor: pointer;
-	display: inline-block;
-	padding: 0.5rem 1rem;
-}
-
-nav ul li a:hover {
-	color: var(--highlight)
-}
-
-/* Hover effect on a parent list item (projects, algorithms) */
-nav ul li:hover {
-	color: var(--highlight);
-	border-radius: 15%;
-	box-shadow: inset;
-}
-
-/* Dropdown Menus */
-nav ul li ul {
-	opacity: 0;
-	transform: translateY(10px);
-	/* subtle slide */
-	pointer-events: none;
-	transition: opacity 0.25s ease, transform 0.25s ease;
-	position: absolute;
-	/* directly below the parent */
-	top: 100%;
-	left: 0;
-	background-color: var(--background);
-	padding: 0.5rem 0;
-	/* On top of everything else */
-	z-index: 100;
-	min-width: 200px;
-	flex-direction: column;
-
-}
-
-/* Dropdown list items */
-nav ul li ul li {
-	width: 100%;
-}
-
-
-nav ul li ul li a:hover {
-	background-color: var(--highlight);
-	color: var(--background);
-	border-radius: 4px;
-	width: 100%;
-}
-
-/* Show dropdown on hover */
-nav ul li:hover>ul {
-	opacity: 1;
-	transform: translateY(0);
-	pointer-events: auto;
-}
 
 /*Display functionaltiy*/
 .display {
@@ -139,20 +41,25 @@ nav ul li:hover>ul {
 }
 
 /* Title box (top)*/
-.title-box {
+.title-card {
 	font-family: 'Montserrat', sans-serif;
 	padding: 1rem;
 	border-bottom: 1px solid #EAEFEF;
+
 	background-size: cover;
 	background-repeat: no-repeat;
-	height: clamp(130px, 25vw, 300px);
-	/*Adujust this later to grow and shrink*/
+	background-position: center;
+
+	min-height: 100vh;
+	height: clamp(400px, 55vw, 700px);
+
 	display: flex;
-	position: relative;
-	/* needed for overlay effect for proj-title text*/
 	flex-direction: column;
-	justify-content: left;
-	opacity: 100%;
+	justify-content: center;
+	position: relative;
+	overflow: hidden;
+
+	scroll-snap-align: start;
 }
 
 /* Background opaque effect*/
@@ -208,40 +115,167 @@ nav ul li:hover>ul {
 }
 
 
-/* Project Description (left) */
-.left {
-	padding: 1rem;
-	background-color: var(--DARK);
-	color: var(--yellow);
+/*Main Content Formatting*/
+.content {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	gap: 0;
 }
 
-
-
-.center {
-	padding: 1rem;
-	background-color: var(--DARK);
-	color: var(--yellow);
+.summary-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: clamp(600px, 85vh, 900px);
+	/* near full screen but flexible */
+	padding: clamp(1rem, 5vw, 3rem);
+	background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
-.right {
-	justify-content: end;
-	padding: 1rem;
-	background-color: var(--DARK);
-	color: var(--yellow);
+.summary-card-content {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	align-items: center;
 }
 
-.minor-title {
+.summary-left,
+.summary-right {
+	flex: 1;
+}
 
-	font-size: 1.5rem;
+.summary-left {
+	color: var(--text);
+}
+
+.summary-left .minor-title {
+	font-size: clamp(1.25rem, 2.5vw, 2rem);
 	font-weight: bold;
-	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+}
 
+.summary-left .proj-description {
+	font-size: clamp(1rem, 1.8vw, 1.3rem);
+	line-height: 1.6;
+}
+
+.summary-right .demo-video-wrapper {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+	/* 16:9 ratio */
+	height: 0;
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.demo-video-wrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/* Design Carousel Container */
+.design-card {
+	padding: 4rem 2rem;
+	background-color: var(--background);
+	color: var(--text);
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.design-title {
+	font-size: 2.5rem;
+	font-weight: bold;
+	color: var(--highlight);
+	margin-bottom: 2rem;
+}
+
+/* Wrapper holds the track + arrows */
+.design-carousel-wrapper {
+	position: relative;
+	max-width: 1000px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+/* Track of Slides */
+.design-carousel-track {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+}
+
+/* Individual Slide */
+.design-carousel-slide {
+	min-width: 100%;
+	padding: 2rem;
+	box-sizing: border-box;
+	text-align: left;
+	background-color: #1e1e1e;
+	border-radius: 12px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+	color: var(--text);
+}
+
+.design-carousel-slide h3 {
+	font-size: 1.8rem;
+	color: var(--yellow);
+	margin-bottom: 1rem;
+}
+
+.design-carousel-slide p {
+	font-size: 1.1rem;
+	line-height: 1.6;
+	color: #ddd;
+}
+
+.design-carousel-slide img {
+	max-width: 100%;
+	max-height: 300px;
+	margin: 1rem auto;
+	display: block;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Navigation Arrows */
+.design-carousel-arrow,
+.design-carousel-left {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background: rgba(255, 255, 255, 0.08);
+	border: none;
+	font-size: 2.5rem;
+	color: var(--highlight);
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	z-index: 10;
+	transition: background-color 0.3s ease;
+}
+
+.design-carousel-arrow:hover,
+.design-carousel-left:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.design-carousel-left {
+	left: 10px;
+}
+
+.design-carousel-arrow.right {
+	right: 10px;
 }
 
 
-
-
-/* code container */
+/* 3rd, Code container with key files for the project*/
 .code-container {
 	display: flex;
 	flex-direction: column;

@@ -1,0 +1,88 @@
+/* Navigation Bar */
+nav {
+	background-color: var(--background);
+	padding: 1rem;
+	position: relative;
+	z-index: 2;
+
+}
+
+/*main nav list container*/
+nav ul {
+	display: flex;
+	justify-content: space-evenly;
+	list-style-type: none;
+	font-size: 1.2rem;
+	margin: 0;
+	padding: 0;
+}
+
+/* Nav links */
+nav ul li {
+	position: relative;
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	/* vertically center text */
+	height: 100%;
+	/* ensures equal alignment */
+}
+
+nav ul li a {
+	text-decoration: none;
+	color: var(--text);
+	cursor: pointer;
+	display: inline-block;
+	padding: 0.5rem 1rem;
+}
+
+nav ul li a:hover {
+	color: var(--highlight)
+}
+
+/* Hover effect on a parent list item (projects, algorithms) */
+nav ul li:hover {
+	color: var(--highlight);
+	border-radius: 15%;
+	box-shadow: inset;
+}
+
+/* Dropdown Menus */
+nav ul li ul {
+	opacity: 0;
+	transform: translateY(10px);
+	/* subtle slide */
+	pointer-events: none;
+	transition: opacity 0.25s ease, transform 0.25s ease;
+	position: absolute;
+	/* directly below the parent */
+	top: 100%;
+	left: 0;
+	background-color: var(--background);
+	padding: 0.5rem 0;
+	/* On top of everything else */
+	z-index: 100;
+	min-width: 200px;
+	flex-direction: column;
+
+}
+
+/* Dropdown list items */
+nav ul li ul li {
+	width: 100%;
+}
+
+
+nav ul li ul li a:hover {
+	background-color: var(--highlight);
+	color: var(--background);
+	border-radius: 4px;
+	width: 100%;
+}
+
+/* Show dropdown on hover */
+nav ul li:hover>ul {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}

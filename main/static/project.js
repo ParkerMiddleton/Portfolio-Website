@@ -1,6 +1,3 @@
-
-
-
 const urls = JSON.parse(
   document.getElementById('codeURLS').textContent
 );
@@ -55,3 +52,24 @@ Promise.all(fetchPromises)
   });
 
 
+
+document.addEventListener("DOMContentLoaded", () => {
+	const track = document.getElementById("design-carousel-track");
+	const slides = document.querySelectorAll(".design-carousel-slide");
+	let currentSlide = 0;
+
+	function updateCarousel() {
+		const offset = -currentSlide * 100;
+		track.style.transform = `translateX(${offset}%)`;
+	}
+
+	window.nextSlide = function () {
+		currentSlide = (currentSlide + 1) % slides.length;
+		updateCarousel();
+	};
+
+	window.prevSlide = function () {
+		currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+		updateCarousel();
+	};
+});
