@@ -11,6 +11,8 @@ class Project(models.Model):
 	title_image = models.ImageField(upload_to="project_images/",blank=True, null=True) #image behind the title
 	demo_ID = models.CharField(max_length=100, null=True, blank=True) #demo video 
 	code_urls = models.TextField(blank=True, null=True) #URLs that link to the gitfiles to be displayed.
+	reflection = models.TextField(default="")
+	reflection_image = models.ImageField(upload_to="project_images/", blank=True, null=True)
 
 	def __str__(self):
 		return self.title

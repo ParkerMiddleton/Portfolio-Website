@@ -18,9 +18,9 @@
 		<div class="content">
 
 			<section class="summary-card">
+				<h2 class="summary-title"> Project Summary & Video Demonstration</h2>
 				<div class="summary-card-content">
 					<div class="summary-left">
-						<p class="minor-title">Summary</p>
 						<p class="proj-description">{{Active_Project.project_description}}</p>
 					</div>
 
@@ -65,18 +65,44 @@
 		</div>
 
 		<!-- Code display -->
-		<div class="code-container">
-			<div class="code-wrapper">
+		<section class="code-card">
+			<h2 class="code-card-title"><code>Show me the code...</code></h2>
+			<div class="code-box">
+				<nav class="code-nav">
+					<ul class="code-name-list" id="code-name-list">
+					</ul>
+				</nav>
+				<pre><code id="GHCode" class="language-csharp"></code></pre>
+			</div>
+		</section>
 
-				<div class="code-box">
-					<nav class="code-nav">
-						<ul class="code-name-list" id="code-name-list">
 
-						</ul>
-					</nav>
-					<pre><code id="GHCode" class="language-csharp"></code></pre>
+		<!-- Project Reflection -->
+		<section class="reflection-card">
+			<h2 class="reflection-card-title">Project Reflection & Takeaways</h2>
+			<div class="reflection-card-content">
+				<div class="reflection-left">
+					<div class="reflection-card-text">
+						{{Active_Project.reflection}}
+					</div>
+				</div>
+				<div class="relfection-right">
+					<div class="reflection-card-image-wrapper"><img src="{{Active_Project.reflection_image.url}}"
+							alt="Reflective Image"></div>
 				</div>
 			</div>
-		</div>
+		</section>
+
+		{% if next_project %}
+		<section class="next-project-card">
+			<div class="next-project-button-wrapper">
+				<a href="{% url 'project' next_project.id %}" class="next-project-button">
+					<span class="next-project-label">Next Project:</span>
+					<span class="next-project-title">{{ next_project.title }}</span>
+					<span class="next-project-arrow">→</span>
+				</a>
+			</div>
+		</section>
+		{% endif %}
 	</div>
 </main>

@@ -24,6 +24,9 @@ def project(request, project_id):
 
 	url_list = parse_URLs(active_project.code_urls)
 
+	next_project = models.Project.objects.filter(date__gt= active_project.date).order_by('date').first()
+
+
 	print(active_project.title_image.url)
 
 	return render(request, "project.html", {
@@ -31,7 +34,8 @@ def project(request, project_id):
 		"Projects": projects, 
 		"Algorithms": algorithms, 
 		"Topics": topics,
-		"url_list": url_list})
+		"url_list": url_list,
+		"next_project":next_project})
 
 #algorithm.html
 def algorithm(request, algorithm_id):
