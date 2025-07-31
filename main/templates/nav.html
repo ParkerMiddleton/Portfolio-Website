@@ -1,9 +1,7 @@
 <header>
 	<nav>
 		<ul>
-			<li><a href="{% url 'index' %}">Digital Portfolio</a></li>
-			<li><a href="{% url 'about' %}">About Me</a></li>
-
+			<li><a href="{% url 'home' %}">Home</a></li>
 			<li class="dropdown-option"> <a href="#">Projects</a>
 				<ul class="dropdown-content">
 					{% for P in Projects %}

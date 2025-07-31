@@ -36,3 +36,10 @@ class Algorithm(models.Model):
 class Topic(models.Model):
 	title = models.CharField(max_length=100, blank=False) #topic title
 	description = models.TextField(blank = False) #topic description
+
+class HomeContents(models.Model):
+	opening_pic = models.ImageField(upload_to="home_images/", blank=True, null=True)
+	welcome_message = models.TextField()# Welcome message that explains the purpose of the page
+	about_image = models.ImageField(upload_to="home_images/", blank=True, null=True)
+	about_message = models.TextField() # About me description
+	

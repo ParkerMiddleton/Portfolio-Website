@@ -7,26 +7,6 @@
 	--mutedtext: #B0B0B0;
 }
 
-
-
-/*Background images*/
-.project-pics {
-	width: 100%;
-	height: 35vh;
-	/* Half the viewport height */
-	background-image: url("/static/img/uofu1.jpg");
-	background-size: cover;
-	/* Fill container, crop as needed */
-	background-position: top;
-	/* Show the top of the image */
-	background-repeat: no-repeat;
-	z-index: -1;
-	/* Push behind navbar */
-	position: relative;
-	/* or 'absolute' depending on layout */
-}
-
-
 /*Display functionaltiy*/
 .display {
 	display: flex;
