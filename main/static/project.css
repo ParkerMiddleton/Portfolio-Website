@@ -13,13 +13,6 @@
 	flex-direction: column;
 }
 
-.content {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	gap: 2rem;
-}
-
 /* Title box (top)*/
 .title-card {
 	font-family: 'Montserrat', sans-serif;

@@ -4,18 +4,13 @@ from . import models
 #index.html
 def index(request):
 	projects, algorithms, topics = getModelCollections()
+	home_page_singleton = get_object_or_404(models.HomeContents)
 	return render(request, "index.html", {
+		"HomeContent": home_page_singleton,
 		"Projects": projects,
 		"Algorithms": algorithms,
 		"Topics": topics})
 
-#about.html
-def about(request):
-	projects, algorithms, topics = getModelCollections()
-	return render(request,"about.html", {
-		"Projects": projects,
-		"Algorithms": algorithms,
-		"Topics": topics})
 
 #project.html
 def project(request, project_id):

@@ -1,1 +1,195 @@
 /* CSS for home page cards*/
+:root {
+	/*Color pallete*/
+	--background: #121212;
+	--accent: #a32424;
+	--text: #EEEEEE;
+	--highlight: #be6363;
+	--mutedtext: #B0B0B0;
+}
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+.display {
+	display: flex;
+	flex-direction: column;
+}
+
+.welcome-card {
+	padding: 1rem;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	min-height: 100vh;
+	height: clamp(400px, 55vw, 700px);
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+	overflow: hidden;
+
+	scroll-snap-type: start;
+	gap: 0.6rem;
+}
+
+.welcome-card::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+	z-index: 0;
+}
+
+.welcome-card>* {
+	z-index: 1;
+}
+
+.welcome-title {
+	color: var(--text);
+	font-size: clamp(24px, 5vw, 48px);
+}
+
+.welcome-name {
+	color: var(--text);
+	font-size: clamp(16px, 2vw, 36px);
+}
+
+.welcome-message {
+	color: var(--text);
+	font-size: clamp(12px, 1.5vw, 26px);
+}
+
+.about-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+	min-height: clamp(600px, 85vh, 900px);
+	padding: clamp(1rem, 5vw, 3rem);
+	background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.02) 100%);
+	position: relative;
+	/* <-- add this */
+	overflow: hidden;
+}
+
+.about-title,
+.about-contents {
+	position: relative;
+	z-index: 1;
+}
+.about-title {
+	font-size: 2.25rem;
+	font-weight: 700;
+	color: var(--accent);
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+.about-title::after {
+	content: "";
+	display: block;
+	width: 60px;
+	height: 4px;
+	background: var(--highlight);
+	margin-top: 0.5rem;
+	border-radius: 2px;
+}
+
+.about-card::before {
+	content: "";
+	position: absolute;
+	top: -50px;
+	right: -50px;
+	width: 200px;
+	height: 200px;
+	background: var(--accent);
+	opacity: 0.05;
+	border-radius: 50%;
+	filter: blur(50px);
+	z-index: 0;
+	animation: float 6s ease-in-out infinite;
+}
+
+.about-contents {
+	text-align: left;
+	display: flex;
+	flex-direction: row;
+	margin: auto 0;
+	gap: 2rem;
+}
+
+.about-left,
+.about-right {
+	flex: 1;
+}
+
+.about-left {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+}
+
+.about-left p {
+	line-height: 1.6;
+	color: var(--text);
+	background: linear-gradient(to right, var(--text), var(--mutedtext));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.about-right {
+	display: flex;
+	/* Optional */
+	align-items: center;
+	justify-content: center;
+	max-width: 50%;
+	/* Control width */
+}
+
+.about-right>img {
+	max-width: 90%;
+	height: auto;
+	object-fit: cover;
+}
+
+.about-image {
+	clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+	.about-contents {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.about-right {
+		max-width: 100%;
+	}
+
+	.about-title {
+		text-align: center;
+	}
+
+	.about-left {
+		text-align: center;
+		align-items: center;
+	}
+}
+
+@keyframes float {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-15px);
+	}
+}

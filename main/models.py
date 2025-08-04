@@ -33,9 +33,15 @@ class Algorithm(models.Model):
 	description = models.TextField(blank=False) #Description of the algorithm and why I like it
 	leetcode_video = models.FileField(null=True, blank=True) #a video demo of me using the algorithm
 
+	def __str__(self):
+		return self.title
+
 class Topic(models.Model):
 	title = models.CharField(max_length=100, blank=False) #topic title
 	description = models.TextField(blank = False) #topic description
+
+	def __str__(self):
+		return self.title
 
 class HomeContents(models.Model):
 	opening_pic = models.ImageField(upload_to="home_images/", blank=True, null=True)
@@ -43,3 +49,6 @@ class HomeContents(models.Model):
 	about_image = models.ImageField(upload_to="home_images/", blank=True, null=True)
 	about_message = models.TextField() # About me description
 	
+
+	def __str__(self):
+		return "Home Page Singleton"
