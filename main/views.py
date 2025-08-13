@@ -5,11 +5,14 @@ from . import models
 def index(request):
 	projects, algorithms, topics = getModelCollections()
 	home_page_singleton = get_object_or_404(models.HomeContents)
+	carousel_links = [projects.first(), algorithms.first(), topics.first()]
+
 	return render(request, "index.html", {
 		"HomeContent": home_page_singleton,
 		"Projects": projects,
 		"Algorithms": algorithms,
-		"Topics": topics})
+		"Topics": topics,
+		"Carousel_Links": carousel_links})
 
 
 #project.html

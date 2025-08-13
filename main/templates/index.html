@@ -6,33 +6,36 @@
 
 	<div class="display">
 
-	{% if HomeContent %}
-	<section class="welcome-card" style="background-image: url({{HomeContent.opening_pic.url}});">
-		<h2 class="welcome-title">Digital Portfolio</h2>
-		<h4 class="welcome-name">by Parker Middleton</h4>
+		{% if HomeContent %}
+		<section class="welcome-card" style="background-image: url({{HomeContent.opening_pic.url}});">
+			<h2 class="welcome-title">Digital Portfolio</h2>
+			<h4 class="welcome-name">by Parker Middleton</h4>
 
-		<div class="welcome-contents">
-			<p>{{HomeContent.welcome_message}}</p>
-		</div>
-	</section>
-
-
-
-	<section class="about-card">
-		<h2 class="about-title">About Me</h2>
-		<div class="about-contents">
-			<div class="about-left">
-				{{HomeContent.about_message|safe}}
+			<div class="welcome-contents">
+				<p>{{HomeContent.welcome_message}}</p>
 			</div>
-			<div class="about-right">
-				<img class="about-image" src="{{HomeContent.about_image.url}}">
-			</div>
-		</div>
-	</section>
-	<section class="showcase-carousel">
-	</section>
+		</section>
 
-	
-	{% endif %}
+
+
+		<section class="about-card">
+			<h2 class="about-title">About Me</h2>
+			<div class="about-contents">
+				<div class="about-left">
+					{{HomeContent.about_message|safe}}
+				</div>
+				<div class="about-right">
+					<img class="about-image" src="{{HomeContent.about_image.url}}">
+				</div>
+			</div>
+		</section>
+
+
+		<section class="showcase-card">
+			<!-- TODO: carousel the begining of each part of the website-->
+		</section>
+
+
+		{% endif %}
 	</div>
 </main>

@@ -8,59 +8,54 @@
 
 	<div class="display">
 
-
 		<section class="title-card" style="background-image: url({{Active_Project.title_image.url}});">
 			<p class="proj-title">{{Active_Project.title}}</p>
 			<p class="proj-technologies">{{Active_Project.technologies}}</p>
 			<p class="proj-date">{{Active_Project.date}}</p>
 			<p class="proj-date">{{Active_Project.course}}</p>
+		</section>
+
+		<section class="summary-card">
+			<h2 class="summary-title"> Project Summary & Video Demonstration</h2>
+			<div class="summary-card-content">
+				<div class="summary-left">
+					<p class="proj-description">{{Active_Project.project_description}}</p>
+				</div>
+
+				<div class="summary-right">
+					<div class="demo-video-wrapper">
+						<iframe src="https://www.youtube.com/embed/{{ Active_Project.demo_ID }}" frameborder="0"
+							allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
 
 		</section>
-			<section class="summary-card">
-				<h2 class="summary-title"> Project Summary & Video Demonstration</h2>
-				<div class="summary-card-content">
-					<div class="summary-left">
-						<p class="proj-description">{{Active_Project.project_description}}</p>
-					</div>
 
-					<div class="summary-right">
-						<div class="demo-video-wrapper">
-							<iframe src="https://www.youtube.com/embed/{{ Active_Project.demo_ID }}" frameborder="0"
-								allowfullscreen></iframe>
-						</div>
+		<section class="design-card">
+			<h2 class="design-title">Design Patterns & Concepts</h2>
+
+			<div class="design-carousel-wrapper">
+
+				<button class="design-carousel-left arrow" onclick="prevSlide()">&#10094;</button>
+
+				<div class="design-carousel-track" id="design-carousel-track">
+					{% for concept in Active_Project.design_concepts.all %}
+					<div class="design-carousel-slide">
+						<h3>{{concept.title}}</h3>
+						<p>{{concept.description}}</p>
+						{% if concept.image %}
+						<img src="{{ concept.image.url }}" alt="{{concept.title}} image">
+						{% endif %}
 					</div>
+					{% empty %}
+					<p>No design concepts added for this project yet.</p>
+					{% endfor %}
 				</div>
 
-			</section>
-
-			<section class="design-card">
-				<h2 class="design-title">Design Patterns & Concepts</h2>
-
-				<div class="design-carousel-wrapper">
-
-					<button class="design-carousel-left arrow" onclick="prevSlide()">&#10094;</button>
-
-					<div class="design-carousel-track" id="design-carousel-track">
-						{% for concept in Active_Project.design_concepts.all %}
-						<div class="design-carousel-slide">
-							<h3>{{ concept.title}}</h3>
-							<p>{{concept.description}}</p>
-							{% if concept.image %}
-							<img src="{{ concept.image.url }}" alt="{{concept.title}} image">
-							{% endif %}
-						</div>
-						{% empty %}
-						<p>No design concepts added for this project yet.</p>
-						{% endfor %}
-					</div>
-
-					<button class="design-carousel-arrow right" onclick="nextSlide()">&#10095;</button>
-				</div>
-			</section>
-			<div class="design-card">
-
-
+				<button class="design-carousel-arrow right" onclick="nextSlide()">&#10095;</button>
 			</div>
+		</section>
 
 		<!-- Code display -->
 		<section class="code-card">

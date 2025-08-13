@@ -29,9 +29,13 @@ class DesignConcept(models.Model):
 
 #A General template for each algortihm upload
 class Algorithm(models.Model):
+	#Hero card
 	title = models.CharField(max_length=100, blank=False) #Algorithm Title
-	description = models.TextField(blank=False) #Description of the algorithm and why I like it
-	leetcode_video = models.FileField(null=True, blank=True) #a video demo of me using the algorithm
+	hero_subtitle = models.TextField(blank=False) #Description of the algorithm and why I like it
+	hero_image = models.ImageField(upload_to="algorithm_images/",blank=True, null=True)
+	#Walkthrough card
+	walkthrough_description = models.TextField(null=True, blank=True)#left
+	walkthrough_video_ID = models.CharField(max_length=100, null=True, blank=True)#right
 
 	def __str__(self):
 		return self.title
