@@ -13,8 +13,14 @@
 	flex-direction: column;
 }
 
+html{
+	overflow-x: hidden;
+}
+
+
 /* Title box (top)*/
 .title-card {
+
 	font-family: 'Montserrat', sans-serif;
 	padding: 1rem;
 	border-bottom: 1px solid #EAEFEF;
@@ -36,7 +42,7 @@
 }
 
 /* Background opaque effect*/
-.title-box::before {
+.title-card::before {
 	content: "";
 	position: absolute;
 	inset: 0;
@@ -44,7 +50,7 @@
 	z-index: 0;
 }
 
-.title-box>* {
+.title-card>* {
 	position: relative;
 	z-index: 1;
 }
@@ -158,8 +164,11 @@
 	height: 100%;
 }
 
+
+
 /* Design Carousel Container */
-.design-card, .next-project-card {
+.design-card,
+.next-project-card {
 	padding: 4rem 2rem;
 	color: var(--text);
 	text-align: center;
@@ -252,7 +261,32 @@
 }
 
 
-/* 3rd, Code container with key files for the project*/
+.design-carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 0.5rem;
+}
+
+.design-carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.664);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.design-carousel-dot.active {
+  background-color: var(--text);
+}
+
+.design-carousel-dot:focus {
+  outline: 2px solid var(--highlight);
+  outline-offset: 2px;
+}
+
+
 
 .code-card {
 	display: flex;
@@ -276,12 +310,14 @@
 	background-color: #1e1e1e;
 	border-radius: 10px;
 	padding: 1rem;
-	max-height: 400px;
+	max-height: 500px;
 	overflow: auto;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	font-family: 'Fira Code', monospace;
 
-	max-width: 800px;
+	max-width: 1000px;
+	box-sizing: border-box;
+	overflow-x:auto;
 	width: 100%;
 	margin: 0 auto;
 
@@ -295,10 +331,12 @@
 
 .code-nav ul {
 	display: flex;
-	justify-content: space-evenly;
-	list-style-type: none;
-	font-size: 1.2rem;
-	/* no bullets*/
+	flex-wrap: wrap;
+	gap: 1rem;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	justify-content: center;
 }
 
 .code-nav ul li div {
@@ -309,6 +347,12 @@
 
 .code-nav ul li div:hover {
 	color: var(--text)
+}
+
+.code-nav ul li div.active {
+  color: var(--text);
+  border-radius: 4px;
+  font-weight: bold;
 }
 
 .reflection-card {
@@ -322,7 +366,7 @@
 
 .reflection-card-title {
 	margin-bottom: 2rem;
-	margin-top:2rem;
+	margin-top: 2rem;
 }
 
 /* Split left and right */
@@ -331,7 +375,7 @@
 	flex-direction: row;
 	gap: 2rem;
 	max-width: 1200px;
-	/* margin: 0 auto; */
+	margin: 0 auto;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
@@ -353,52 +397,25 @@
 
 /* Right side (image container) */
 .reflection-right {
-	flex: 1 1 35%;
-	display: flex;
-	justify-content: center;
+	max-width: 100%;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .reflection-card-image-wrapper {
 	width: 100%;
-	max-width: 500px;
-	background-color: #1e1e1e;
-	border-radius: 12px;
-	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-	padding: 1rem;
-	display: inline-block;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .reflection-card-image-wrapper>img {
 	width: 100%;
 	height: auto;
-	object-fit: contain;
+	max-width: 100%;
 	display: block;
+	object-fit: contain;
 }
 
-@media (max-width: 768px) {
-	.reflection-card-content {
-		flex-direction: column;
-		align-items: center;
-		/* center both text and image */
-		gap: 1.5rem;
-		/* adjust spacing for vertical layout */
-	}
-
-	.reflection-left,
-	.reflection-right {
-		flex: none;
-		/* reset flex-grow/shrink */
-		width: 100%;
-		/* full width on mobile */
-		max-width: 600px;
-		/* optional max width */
-	}
-
-	.reflection-card-image {
-		max-width: 80vw;
-		/* scale image container nicely on mobile */
-	}
-}
 
 .next-project-button {
 	display: inline-flex;
@@ -440,4 +457,165 @@
 
 .next-project-button:hover .next-project-arrow {
 	transform: translateX(8px);
+}
+
+
+
+
+
+
+/**** RESPONSIVE DESIGN ***/
+/**** RESPONSIVE DESIGN ****/
+
+/* Tablets and smaller */
+@media (max-width: 900px) {
+  .code-card {
+    padding: 3rem 1.5rem;
+  }
+
+  .code-card-title {
+    font-size: 1.8rem;
+  }
+
+  .code-box {
+    max-height: 60vh; /* relative to viewport height */
+  }
+}
+
+/* Medium tablets and large phones */
+@media (max-width: 768px) {
+  .summary-card-content,
+  .reflection-card-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  .summary-left,
+  .summary-right,
+  .reflection-left,
+  .reflection-right {
+    width: 100%;
+    max-width: 600px;
+    flex: none; /* Reset flex-grow/shrink */
+  }
+
+  .reflection-card-image {
+    max-width: 80vw; /* scale image nicely on mobile */
+  }
+}
+
+/* Phones and small devices */
+@media (max-width: 600px) {
+  /* Typography */
+  .summary-title,
+  .design-title,
+  .reflection-card-title {
+    font-size: 1.8rem;
+  }
+
+  .proj-title {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+
+  .proj-technologies,
+  .proj-date {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+  }
+
+  /* Carousel arrows */
+  .design-carousel-arrow,
+  .design-carousel-left {
+    font-size: 1.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .design-carousel-left {
+    left: 5px;
+  }
+
+  .design-carousel-arrow.right {
+    right: 5px;
+  }
+
+  /* Code box */
+  .code-box {
+    font-size: 0.85rem;
+    max-height: 55vh;
+  }
+
+  /* Padding and gaps for cards */
+  .summary-card,
+  .design-card,
+  .code-card,
+  .reflection-card {
+    padding: 2rem 1rem;
+  }
+
+  .summary-card-content,
+  .reflection-card-content {
+    gap: 1rem;
+  }
+
+  /* Code card specific */
+  .code-card {
+    padding: 2rem 1rem;
+  }
+
+  .code-card-title {
+    font-size: 1.5rem;
+  }
+
+  .code-nav ul {
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .code-nav ul li div {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.95rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+
+  /* Vertical spacing between cards */
+  .summary-card,
+  .design-card,
+  .code-card,
+  .reflection-card,
+  .next-project-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .summary-left,
+  .summary-right,
+  .reflection-left,
+  .reflection-right {
+    max-width: 90vw;
+  }
+
+  .code-card {
+    padding: 1.5rem 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .reflection-card-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reflection-left,
+  .reflection-right {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .reflection-card-text {
+    text-align: center; /* optional */
+  }
 }

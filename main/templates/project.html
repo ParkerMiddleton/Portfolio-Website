@@ -45,13 +45,14 @@
 						<h3>{{concept.title}}</h3>
 						<p>{{concept.description}}</p>
 						{% if concept.image %}
-						<img src="{{ concept.image.url }}" alt="{{concept.title}} image">
+						<img src="{{ concept.image.url }}" alt="{{concept.title}} image" loading="lazy">
 						{% endif %}
 					</div>
 					{% empty %}
 					<p>No design concepts added for this project yet.</p>
 					{% endfor %}
 				</div>
+				<div class="design-carousel-dots"></div>
 
 				<button class="design-carousel-arrow right" onclick="nextSlide()">&#10095;</button>
 			</div>
@@ -79,7 +80,7 @@
 						{{Active_Project.reflection}}
 					</div>
 				</div>
-				<div class="relfection-right">
+				<div class="reflection-right">
 					<div class="reflection-card-image-wrapper"><img src="{{Active_Project.reflection_image.url}}"
 							alt="Reflective Image"></div>
 				</div>
