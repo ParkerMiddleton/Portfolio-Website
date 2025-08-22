@@ -354,13 +354,12 @@ html{
   border-radius: 4px;
   font-weight: bold;
 }
-
+/*
 .reflection-card {
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	padding: clamp(1rem, 5vw, 3rem);
-	/* min-height: clamp(600px, 85vh, 900px); */
 	background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
@@ -369,7 +368,7 @@ html{
 	margin-top: 2rem;
 }
 
-/* Split left and right */
+
 .reflection-card-content {
 	display: flex;
 	flex-direction: row;
@@ -380,7 +379,7 @@ html{
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: nowrap;
-	/* FORCE side-by-side */
+
 
 }
 
@@ -395,7 +394,6 @@ html{
 	text-align: left;
 }
 
-/* Right side (image container) */
 .reflection-right {
 	max-width: 100%;
 	overflow: hidden;
@@ -415,7 +413,7 @@ html{
 	display: block;
 	object-fit: contain;
 }
-
+*/
 
 .next-project-button {
 	display: inline-flex;
