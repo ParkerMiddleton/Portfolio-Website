@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-74_!zar(*cfrh$tes5mb*e)60zcb4-*55%x*@-cc-elip016vk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['parker-middleton-portfolio.com', 'www.parker-middleton-portfolio.com', 'localhost']
+ALLOWED_HOSTS = ['parker-middleton-portfolio.com', 'www.parker-middleton-portfolio.com']
 
 STATIC_URL = '/static/'
 
