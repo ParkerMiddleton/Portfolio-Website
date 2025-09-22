@@ -26,7 +26,6 @@
 
 	min-height: 100vh;
 	height: clamp(400px, 55vw, 700px);
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -35,8 +34,10 @@
 
 	scroll-snap-type: start;
 	gap: 0.6rem;
+
 }
 
+/*Transparent background*/
 .welcome-card::before {
 	content: "";
 	position: absolute;
@@ -46,23 +47,95 @@
 }
 
 .welcome-card>* {
+	color: var(--text);
 	z-index: 1;
 }
 
 .welcome-title {
-	color: var(--text);
-	font-size: clamp(24px, 5vw, 48px);
+	font-size: clamp(5vw, 13vw, 18vw);
 }
 
 .welcome-name {
-	color: var(--text);
-	font-size: clamp(16px, 2vw, 36px);
+	font-size: clamp(2vw, 4vw, 6vw);
+	padding-left: 1rem;
+	
 }
 
-.welcome-message {
-	color: var(--text);
-	font-size: clamp(12px, 1.5vw, 26px);
+.welcome-contents {
+	font-size: clamp(1vw, 2vw, 4vw);
+	padding-left: 1rem;
+
 }
+.welcome-contents ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/*Welcome Card: Small Laptop*/
+@media (max-width:1024px) {
+	.welcome-card {
+		padding: 2rem 1rem;
+		text-align: left;
+	}
+
+	.welcome-title {
+		font-size: clamp(10vw, 15vw, 20vw);
+	}
+
+	.welcome-name {
+		font-size: clamp(2vw, 4vw, 6vw);
+	}
+
+	.welcome-contents {
+		font-size: clamp(1vw, 3vw, 5vw);
+	}
+}
+
+/*Welcom Card: Tablet*/
+@media (max-width: 768px) {
+	.welcome-card {
+		padding: 2rem 1rem;
+		text-align: left;
+	}
+
+	.welcome-title {
+		font-size: clamp(10vw, 20vw, 25vw);
+	}
+
+	.welcome-name {
+		font-size: clamp(3vw, 10vw, 15vw);
+	}
+
+	.welcome-contents {
+		font-size: clamp(2vw, 6vw, 7vw);
+	}
+
+
+}
+
+/*Welcome Card: Moblie*/
+@media (max-width: 430px) {
+	.welcome-card {
+		padding: 2rem 1rem;
+		text-align: center;
+	}
+
+	.welcome-title {
+		font-size: clamp(15vw, 20vw, 25vw);
+	}
+
+	.welcome-name {
+		font-size: clamp(8vw, 10vw, 15vw);
+	}
+
+	.welcome-contents {
+		font-size: clamp(2vw, 6vw, 10vw);
+	}
+
+}
+
+
 
 .about-card {
 	display: flex;
@@ -73,7 +146,6 @@
 	padding: clamp(1rem, 5vw, 3rem);
 	background: linear-gradient(135deg, var(--background) 0%, rgba(255, 255, 255, 0.02) 100%);
 	position: relative;
-	/* <-- add this */
 	overflow: hidden;
 }
 
@@ -82,8 +154,9 @@
 	position: relative;
 	z-index: 1;
 }
+
 .about-title {
-	font-size: 2.25rem;
+	font-size: clamp(1.5vh, 6vh, 8vh);
 	font-weight: 700;
 	color: var(--accent);
 	margin-bottom: 2rem;
@@ -121,6 +194,7 @@
 	flex-direction: row;
 	margin: auto 0;
 	gap: 2rem;
+	font-size: clamp(1vh, 2.5vh, 5vh);
 }
 
 .about-left,
@@ -153,7 +227,7 @@
 }
 
 .about-right>img {
-	max-width: 90%;
+	max-width: 65%;
 	height: auto;
 	object-fit: cover;
 }
@@ -165,30 +239,83 @@
 	border-radius: 12px;
 }
 
+/*Bigger laptop*/
+@media(max-width:1280px){
+	.about-right>img {
+	max-width: 75%;
+	height: auto;
+	object-fit: cover;
+}
+}
+
+/*Laptop*/
+@media (max-width:1024px) {
+	.about-title{
+		font-size: clamp(1.5vh, 5.5vh, 8vh);
+	}
+	.about-right>img {
+	max-width: 78%;
+	height: auto;
+	object-fit: cover;
+}
+}
+
+/*Tablet*/
 @media (max-width: 768px) {
-	.about-contents {
-		flex-direction: column;
-		align-items: center;
-	}
-
-	.about-right {
-		max-width: 100%;
-	}
-
 	.about-title {
 		text-align: center;
 	}
 
+	.about-contents {
+		flex-direction: column;
+		align-items: center;
+		font-size: clamp(1vh, 2vh, 3vh);
+	}
+
+	/*Left is now above*/
 	.about-left {
 		text-align: center;
 		align-items: center;
 	}
+
+	/*Right is now below*/
+	.about-right {
+		max-width: 100%;
+	}
 }
 
+@media (max-width: 430px){
+		.about-title {
+		text-align: center;
+	}
+
+	.about-contents {
+		flex-direction: column;
+		align-items: center;
+		font-size: clamp(1vh, 2vh, 3vh);
+	}
+
+	/*Left is now above*/
+	.about-left {
+		text-align: center;
+		align-items: center;
+	}
+
+	/*Right is now below*/
+	.about-right {
+		max-width: 100%;
+	}
+}
+
+
+
 @keyframes float {
-	0%, 100% {
+
+	0%,
+	100% {
 		transform: translateY(0);
 	}
+
 	50% {
 		transform: translateY(-15px);
 	}

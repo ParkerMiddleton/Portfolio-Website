@@ -7,12 +7,15 @@
 	<div class="display">
 
 		{% if HomeContent %}
-		<section class="welcome-card" style="background-image: url({{HomeContent.opening_pic.url}});">
-			<h2 class="welcome-title">Digital Portfolio</h2>
-			<h4 class="welcome-name">by Parker Middleton</h4>
+		<section class="welcome-card"  tabindex="0" style="background-image: url({{HomeContent.opening_pic.url}});">
+			<h1 class="welcome-title">
+				<span class="line">Digital</span> 
+				<span class="line">Portfolio</span>
+			</h1>
+			<h4 class="welcome-name">Parker Middleton</h4>
 
 			<div class="welcome-contents">
-				<p>{{HomeContent.welcome_message}}</p>
+				{{HomeContent.welcome_message|safe}}
 			</div>
 		</section>
 
