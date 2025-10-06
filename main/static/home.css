@@ -17,7 +17,7 @@
 	flex-direction: column;
 }
 
-.welcome-card {
+#welcome-card {
 	padding: 1rem;
 
 	background-size: cover;
@@ -37,77 +37,104 @@
 
 }
 
+#particles-js {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #a50c16;
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-size: cover;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+#cursor {
+  display: inline-block;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
 /*Transparent background*/
-.welcome-card::before {
+#welcome-card::before {
 	content: "";
 	position: absolute;
 	inset: 0;
 	background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
 	z-index: 0;
+	overflow: hidden;
 }
 
-.welcome-card>* {
+#welcome-card>* {
 	color: var(--text);
-	z-index: 1;
+	z-index: 0;
+	overflow: hidden;
 }
 
-.welcome-title {
+#welcome-title {
 	font-size: clamp(5vw, 13vw, 18vw);
-}
-
-.welcome-name {
-	font-size: clamp(2vw, 4vw, 6vw);
-	padding-left: 1rem;
 	
 }
 
-.welcome-contents {
+#welcome-name {
+	font-size: clamp(2vw, 4vw, 6vw);
+	padding-left: 1rem;
+
+}
+
+#welcome-contents {
 	font-size: clamp(1vw, 2vw, 4vw);
 	padding-left: 1rem;
 
 }
-.welcome-contents ul{
+
+#welcome-contents ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	
 }
 
 /*Welcome Card: Small Laptop*/
 @media (max-width:1024px) {
-	.welcome-card {
+	#welcome-card {
 		padding: 2rem 1rem;
 		text-align: left;
 	}
 
-	.welcome-title {
+	#welcome-title {
 		font-size: clamp(10vw, 15vw, 20vw);
 	}
 
-	.welcome-name {
+	#welcome-name {
 		font-size: clamp(2vw, 4vw, 6vw);
 	}
 
-	.welcome-contents {
+	#welcome-contents {
 		font-size: clamp(1vw, 3vw, 5vw);
 	}
 }
 
 /*Welcom Card: Tablet*/
 @media (max-width: 768px) {
-	.welcome-card {
+	#welcome-card {
 		padding: 2rem 1rem;
 		text-align: left;
 	}
 
-	.welcome-title {
+	#welcome-title {
 		font-size: clamp(10vw, 20vw, 25vw);
 	}
 
-	.welcome-name {
+	#welcome-name {
 		font-size: clamp(3vw, 10vw, 15vw);
 	}
 
-	.welcome-contents {
+	#welcome-contents {
 		font-size: clamp(2vw, 6vw, 7vw);
 	}
 
@@ -116,20 +143,20 @@
 
 /*Welcome Card: Moblie*/
 @media (max-width: 430px) {
-	.welcome-card {
+	#welcome-card {
 		padding: 2rem 1rem;
 		text-align: center;
 	}
 
-	.welcome-title {
+	#welcome-title {
 		font-size: clamp(15vw, 20vw, 25vw);
 	}
 
-	.welcome-name {
+	#welcome-name {
 		font-size: clamp(8vw, 10vw, 15vw);
 	}
 
-	.welcome-contents {
+	#welcome-contents {
 		font-size: clamp(2vw, 6vw, 10vw);
 	}
 
@@ -240,24 +267,25 @@
 }
 
 /*Bigger laptop*/
-@media(max-width:1280px){
+@media(max-width:1280px) {
 	.about-right>img {
-	max-width: 75%;
-	height: auto;
-	object-fit: cover;
-}
+		max-width: 75%;
+		height: auto;
+		object-fit: cover;
+	}
 }
 
 /*Laptop*/
 @media (max-width:1024px) {
-	.about-title{
+	.about-title {
 		font-size: clamp(1.5vh, 5.5vh, 8vh);
 	}
+
 	.about-right>img {
-	max-width: 78%;
-	height: auto;
-	object-fit: cover;
-}
+		max-width: 78%;
+		height: auto;
+		object-fit: cover;
+	}
 }
 
 /*Tablet*/
@@ -284,8 +312,8 @@
 	}
 }
 
-@media (max-width: 430px){
-		.about-title {
+@media (max-width: 430px) {
+	.about-title {
 		text-align: center;
 	}
 

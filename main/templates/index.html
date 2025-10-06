@@ -5,19 +5,31 @@
 <main>
 
 	<div class="display">
+		<!-- particles.js container -->
+
+
 
 		{% if HomeContent %}
-		<section class="welcome-card"  tabindex="0" style="background-image: url({{HomeContent.opening_pic.url}});">
-			<h1 class="welcome-title">
-				<span class="line">Digital</span> 
-				<span class="line">Portfolio</span>
-			</h1>
-			<h4 class="welcome-name">Parker Middleton</h4>
+		<!-- <section class="welcome-card"  tabindex="0" style="background-image: url({{HomeContent.opening_pic.url}});"> -->
+		<section id="welcome-card" tabindex="0">
+			<div id="particles-js">
+			</div>
 
-			<div class="welcome-contents">
+			<!-- UX button prompts -->
+			<div id="Choose-UX"></div>
+
+
+			<h1 id="welcome-title" hidden="true">
+				<span id="line">Digital</span>
+				<span id="line">Portfolio</span>
+			</h1>
+			<h2 id="welcome-text"><span id="typing-text"></span><span id="cursor"></span></h2>
+			<h4 id="welcome-name" hidden="true">Parker Middleton</h4>
+			<div id="welcome-contents" hidden="true">
 				{{HomeContent.welcome_message|safe}}
 			</div>
 		</section>
+
 
 
 
@@ -35,7 +47,7 @@
 
 
 		<section class="showcase-card">
-			<!-- TODO: carousel the begining of each part of the website-->
+			<!-- TODO: carousel the beginning of each part of the website-->
 		</section>
 
 

@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <meta charset="utf8">
-<link rel="Stylesheet" href="/static/project.css">
-<link rel="Stylesheet" href="/static/nav.css">
-<link rel="Stylesheet" href="/static/general.css">
-<link rel="Stylesheet" href="/static/home.css">
-<!-- <link rel="Stylesheet" href="/static/algorithm.css">
-<link rel="Stylesheet" href="/static/topic.css"> -->
 
-<script type=module src="/static/project.js"></script>
-<script type=module src="/static/home.js"></script>
-<script type=module src="/static/nav.js"></script>
+{% load static %}
+<!-- CSS -->
+<link rel="Stylesheet" href="{% static 'project.css' %}">
+<link rel="Stylesheet" href="{% static 'nav.css' %}">
+<link rel="Stylesheet" href="{% static 'general.css' %}">
+<link rel="Stylesheet" href="{% static 'home.css' %}">
+
+<!-- JS -->
+<script type="module" src="{% static 'project.js' %}"></script>
+<script type="module" src="{% static 'particle-settings.js' %}"></script>
+<script type="module" src="{% static 'outJS/intro.js' %}"></script>
 
 <!-- Public theme for code on the webpage -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Source+Code+Pro&display=swap"
+	rel="stylesheet">
 
 <!-- responsive design -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
