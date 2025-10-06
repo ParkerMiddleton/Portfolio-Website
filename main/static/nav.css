@@ -1,13 +1,13 @@
 /* Navigation Bar */
-nav {
+#navbar {
 	background-color: var(--background);
 	position: relative;
 	z-index: 2;
 	padding: 1rem;
 }
 
-/*main nav list container*/
-nav ul {
+/*main #navbar list container*/
+#navbar ul {
 	display: flex;
 	justify-content: right;
 	list-style-type: none;
@@ -17,7 +17,7 @@ nav ul {
 }
 
 /* Nav links */
-nav ul li {
+#navbar ul li {
 	position: relative;
 	color: var(--text);
 	display: flex;
@@ -25,7 +25,7 @@ nav ul li {
 	height: 100%;
 }
 
-nav ul li a {
+#navbar ul li a {
 	text-decoration: none;
 	color: var(--text);
 	cursor: pointer;
@@ -33,18 +33,18 @@ nav ul li a {
 	padding: 0.5rem 1rem;
 }
 
-nav ul li a:hover {
+#navbar ul li a:hover {
 	color: var(--highlight)
 }
 
-nav ul li:hover {
+#navbar ul li:hover {
 	color: var(--highlight);
 	border-radius: 15%;
 	box-shadow: inset;
 }
 
 
-nav ul li ul {
+#navbar ul li ul {
 	opacity: 0;
 	transform: translateY(10px);
 	pointer-events: none;
@@ -61,12 +61,12 @@ nav ul li ul {
 }
 
 /* Dropdown list items */
-nav ul li ul li {
+#navbar ul li ul li {
 	width: 100%;
 }
 
 
-nav ul li ul li a:hover {
+#navbar ul li ul li a:hover {
 	background-color: var(--highlight);
 	color: var(--background);
 	border-radius: 4px;
@@ -74,7 +74,7 @@ nav ul li ul li a:hover {
 }
 
 /* Show dropdown on hover */
-nav ul li:hover>ul {
+#navbar ul li:hover>ul {
 	opacity: 1;
 	transform: translateY(0);
 	pointer-events: auto;

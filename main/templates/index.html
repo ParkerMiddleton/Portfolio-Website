@@ -10,20 +10,25 @@
 
 
 		{% if HomeContent %}
-		<!-- <section class="welcome-card"  tabindex="0" style="background-image: url({{HomeContent.opening_pic.url}});"> -->
-		<section id="welcome-card" tabindex="0">
+
+		<!-- Both Views -->
+		<section id="welcome-card" tabindex="0" hidden="false">
 			<div id="particles-js">
 			</div>
-
-			<!-- UX button prompts -->
-			<div id="Choose-UX"></div>
 
 
 			<h1 id="welcome-title" hidden="true">
 				<span id="line">Digital</span>
 				<span id="line">Portfolio</span>
 			</h1>
-			<h2 id="welcome-text"><span id="typing-text"></span><span id="cursor"></span></h2>
+			<div id="UX-prompt-container">
+				<h2 id="welcome-text">
+					<span id="typing-text"></span>
+					<span id="cursor"></span>
+				</h2>
+				<!-- UX button prompts -->
+				<div id="Choose-UX"></div>
+			</div>
 			<h4 id="welcome-name" hidden="true">Parker Middleton</h4>
 			<div id="welcome-contents" hidden="true">
 				{{HomeContent.welcome_message|safe}}
@@ -31,9 +36,8 @@
 		</section>
 
 
-
-
-		<section class="about-card">
+		<!-- Both Views -->
+		<section id="about-card">
 			<h2 class="about-title">About Me</h2>
 			<div class="about-contents">
 				<div class="about-left">
@@ -45,12 +49,21 @@
 			</div>
 		</section>
 
+		<!-- Recruiter Only -->
+		<section id="project-display-card" >
+			<div id="project-grid">
+				{% for P in Projects %}
+				<div class="individual-project-card">
+					<span> {{P.title}}</span>
+				</div>
+				{% endfor %}
 
-		<section class="showcase-card">
-			<!-- TODO: carousel the beginning of each part of the website-->
+			</div>
 		</section>
 
-
+		<section id="resume-card">
+			<h1>Resume Card</h1>
+		</section>
 		{% endif %}
 	</div>
 </main>

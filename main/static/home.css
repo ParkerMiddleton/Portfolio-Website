@@ -12,6 +12,10 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+.isHidden{
+	display: none !important;
+}
+
 .display {
 	display: flex;
 	flex-direction: column;
@@ -83,21 +87,26 @@
 #welcome-name {
 	font-size: clamp(2vw, 4vw, 6vw);
 	padding-left: 1rem;
-
 }
 
 #welcome-contents {
 	font-size: clamp(1vw, 2vw, 4vw);
 	padding-left: 1rem;
-
 }
 
 #welcome-contents ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	
 }
+
+#UX-prompt-container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 
 /*Welcome Card: Small Laptop*/
 @media (max-width:1024px) {
@@ -164,7 +173,7 @@
 
 
 
-.about-card {
+#about-card {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -347,4 +356,29 @@
 	50% {
 		transform: translateY(-15px);
 	}
+}
+
+
+#project-display-card{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+	min-height: clamp(600px, 85vh, 900px);
+	padding: clamp(1rem, 5vw, 3rem);
+	background: linear-gradient(-135deg, var(--accent) 0%, rgba(255, 255, 255, 0.02) 100%);
+	position: relative;
+	overflow: hidden;
+}
+
+#project-grid{
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 30px;
+	justify-content: center;
+}
+
+.indvidual-project-card{
+	min-height: 250px;
+	border: #EEEEEE;
 }
