@@ -1,8 +1,33 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 from . import models 
+import json
+
+
+@require_POST
+@csrf_exempt
+def set_viewing_mode(request):
+	try:
+		data = json.loads(request.body)
+		mode = data.get('mode', 'Casual')
+  
+		if mode in ['Recruiter', 'Casual']:
+			request.session['view_mode']= mode
+			return JsonResponse({'status': 'success', 'mode':mode})
+
+		return JsonResponse({'status': 'error', 'message': 'Invalid mode'}, status= 400)
+	except json.JSONDecodeError:
+		return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+
+
 
 #index.html
 def index(request):
+    
+    #Check if the 'view_mode' is aloready set in the session
+	view_mode = request.session.get('view_mode', '')
 	projects, algorithms, topics = getModelCollections()
 	home_page_singleton = get_object_or_404(models.HomeContents)
 	carousel_links = [projects.first(), algorithms.first(), topics.first()]
@@ -12,7 +37,9 @@ def index(request):
 		"Projects": projects,
 		"Algorithms": algorithms,
 		"Topics": topics,
-		"Carousel_Links": carousel_links})
+		"Carousel_Links": carousel_links, 
+		"view_mode": view_mode,
+  })
 
 
 #project.html

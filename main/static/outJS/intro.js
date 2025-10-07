@@ -17,26 +17,44 @@ const welcomeCard = document.getElementById("welcome-card");
 const aboutCard = document.getElementById("about-card");
 const projectDisplayCard = document.getElementById("project-display-card");
 const resumeCard = document.getElementById("resume-card");
-//What viewing mode the user has chosen
+//For storing choice of website role
 let UX = "";
+//For creating a session
+const SET_MODE_URL = '/set-view-mode/';
 // Start typing when page loads
 window.addEventListener("DOMContentLoaded", async () => {
-    onInitialPageLoad();
-    const welcome = document.getElementById("welcome-title");
-    const name_ = document.getElementById("welcome-name");
-    const content = document.getElementById("welcome-contents");
-    const messageBox = document.getElementById("welcome-text");
-    //Initially hide about card and nav.
-    await playMessages();
-    if (messageBox)
-        messageBox.hidden = true;
-    if (welcome)
-        welcome.hidden = false;
-    if (name_)
-        name_.hidden = false;
-    if (content)
-        content.hidden = false;
-    if (UX == "Recruiter") {
+    //Get the current role
+    const body = document.body;
+    let currentViewMode = body.dataset.viewMode || null;
+    console.log("currentViewMode on load", currentViewMode);
+    const needsIntro = !currentViewMode;
+    console.log("needs intro:", needsIntro);
+    /**
+     * If no role is set, then we have no session data.
+     * Therefore play the opening monologue
+     */
+    if (needsIntro) {
+        onInitialPageLoad();
+        //Initially hide about card and nav.
+        await playMessages();
+        currentViewMode = UX;
+    }
+    else {
+        //Display Welcome Card Data
+        const welcomeTitle = document.getElementById("welcome-title");
+        if (welcomeTitle) {
+            welcomeTitle.hidden = false;
+        }
+        const welcomeName = document.getElementById("welcome-name");
+        if (welcomeName) {
+            welcomeName.hidden = false;
+        }
+        const welcomeContents = document.getElementById("welcome-contents");
+        if (welcomeContents) {
+            welcomeContents.hidden = false;
+        }
+    }
+    if (currentViewMode == "Recruiter") {
         DisplayRecruiterViews();
     }
     else {
@@ -75,6 +93,9 @@ function DisplayCasualViews() {
  * Toggles cards hidden=False that are tailored to recruiters
  */
 function DisplayRecruiterViews() {
+    if (navbar) {
+        navbar.classList.add("isHidden");
+    }
     if (aboutCard) {
         aboutCard.classList.remove("isHidden");
     }
@@ -114,8 +135,20 @@ async function displayViewerOptions() {
     }
     return new Promise((resolve) => {
         //Cleans up buttons then returns the resolve after click.
-        const cleanupAndResolve = (value) => {
+        const cleanupAndResolve = async (value) => {
             if (ChooseUX) {
+                try {
+                    await fetch(SET_MODE_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ mode: value })
+                    });
+                }
+                catch (error) {
+                    console.error("FAiled to save view mode to Django session:", error);
+                }
                 ChooseUX.removeChild(RecruiterButton);
                 ChooseUX.removeChild(CasualButton);
                 resolve(value);

@@ -12,7 +12,7 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
-.isHidden{
+.isHidden {
 	display: none !important;
 }
 
@@ -55,14 +55,24 @@
 }
 
 #cursor {
-  display: inline-block;
-  animation: blink 1s infinite;
+	display: inline-block;
+	animation: blink 1s infinite;
 }
 
 @keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+
+	25%,
+	75% {
+		opacity: 0;
+	}
 }
+
 /*Transparent background*/
 #welcome-card::before {
 	content: "";
@@ -81,7 +91,7 @@
 
 #welcome-title {
 	font-size: clamp(5vw, 13vw, 18vw);
-	
+
 }
 
 #welcome-name {
@@ -100,7 +110,7 @@
 	padding: 0;
 }
 
-#UX-prompt-container{
+#UX-prompt-container {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -359,7 +369,7 @@
 }
 
 
-#project-display-card{
+#project-display-card {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -371,14 +381,61 @@
 	overflow: hidden;
 }
 
-#project-grid{
+#project-display-card-title {
+	font-size: clamp(1.5vh, 6vh, 8vh);
+	font-weight: 700;
+	color: var(--text);
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+#project-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 30px;
 	justify-content: center;
 }
 
-.indvidual-project-card{
-	min-height: 250px;
-	border: #EEEEEE;
+.individual-project-card {
+	min-height: 550px;
+	border: #EEEEEE 0.2rem solid;
+	border-radius: 4%;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	position: relative;
+
+	overflow: hidden;
+
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+	transition: background-position 30s linear, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.ipc-title {
+	height: 33.33%;
+	width: auto;
+
+	font-size: clamp(1.5vh, 6vh, 8vh);
+	padding: 0.5rem;
+	color: var(--text);
+	background: rgba(0, 0, 0, 0.6);
+	border-radius: 0 0 4% 4%;
+
+	display: flex;
+	align-items: center;
+	text-align: left;
+}
+
+/* slow hover animation */
+.individual-project-card:hover {
+	background-position: 10% center;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+	transform: translateY(-5px);
 }

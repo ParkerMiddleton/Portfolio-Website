@@ -25,5 +25,6 @@ urlpatterns = [
 	path("",views.index, name="home"),
 	path("project/<int:project_id>/",views.project, name="project"),
 	path("algorithm/<int:algorithm_id>/", views.algorithm, name="algorithm"),
-	path("topic/<int:topic_id>/", views.topic, name="topic")
+	path("topic/<int:topic_id>/", views.topic, name="topic"),
+    path('set-view-mode/', views.set_viewing_mode, name='set_viewing_mode'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
