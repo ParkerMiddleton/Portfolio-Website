@@ -3,7 +3,8 @@
  * @author Parker Middleton
  */
 // intro text
-let messages = ["Who are you?"];
+let messages = ["Hi! Thanks for checking out my website!",
+    "Please chose your viewing preference!"];
 //variable typing speeds to mimic natual cadence of typing
 const typing_speeds = [50, 20, 43, 66, 100, 5, 10, 33, 90];
 const deleting_speeds = [5, 19, 6, 10, 22];
@@ -13,7 +14,6 @@ const pauseTime = 1500;
 const typingEl = document.getElementById("typing-text");
 //Card Elements
 const navbar = document.getElementById("navbar");
-const welcomeCard = document.getElementById("welcome-card");
 const aboutCard = document.getElementById("about-card");
 const projectDisplayCard = document.getElementById("project-display-card");
 const resumeCard = document.getElementById("resume-card");
@@ -26,9 +26,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     //Get the current role
     const body = document.body;
     let currentViewMode = body.dataset.viewMode || null;
-    console.log("currentViewMode on load", currentViewMode);
     const needsIntro = !currentViewMode;
-    console.log("needs intro:", needsIntro);
+    console.log("current role: ", currentViewMode);
     /**
      * If no role is set, then we have no session data.
      * Therefore play the opening monologue
@@ -39,20 +38,18 @@ window.addEventListener("DOMContentLoaded", async () => {
         await playMessages();
         currentViewMode = UX;
     }
-    else {
-        //Display Welcome Card Data
-        const welcomeTitle = document.getElementById("welcome-title");
-        if (welcomeTitle) {
-            welcomeTitle.hidden = false;
-        }
-        const welcomeName = document.getElementById("welcome-name");
-        if (welcomeName) {
-            welcomeName.hidden = false;
-        }
-        const welcomeContents = document.getElementById("welcome-contents");
-        if (welcomeContents) {
-            welcomeContents.hidden = false;
-        }
+    //Display Welcome Card Data
+    const welcomeTitle = document.getElementById("welcome-title");
+    if (welcomeTitle) {
+        welcomeTitle.hidden = false;
+    }
+    const welcomeName = document.getElementById("welcome-name");
+    if (welcomeName) {
+        welcomeName.hidden = false;
+    }
+    const welcomeContents = document.getElementById("welcome-contents");
+    if (welcomeContents) {
+        welcomeContents.hidden = false;
     }
     if (currentViewMode == "Recruiter") {
         DisplayRecruiterViews();
@@ -87,6 +84,12 @@ function DisplayCasualViews() {
     }
     if (aboutCard) {
         aboutCard.classList.remove("isHidden");
+    }
+    if (projectDisplayCard) {
+        projectDisplayCard.classList.add("isHidden");
+    }
+    if (resumeCard) {
+        resumeCard.classList.add("isHidden");
     }
 }
 /**
@@ -171,9 +174,12 @@ async function displayViewerOptions() {
 async function playMessages() {
     for (let phrase of messages) {
         await type(phrase);
-        if (phrase == "Who are you?") {
+        if (phrase == "Please chose your viewing preference!") {
             UX = await displayViewerOptions();
             console.log('Viewing Mode:', UX);
+            if (typingEl)
+                typingEl.innerHTML = "";
+            return;
         }
         await new Promise(res => setTimeout(res, pauseTime));
         await delete_word();

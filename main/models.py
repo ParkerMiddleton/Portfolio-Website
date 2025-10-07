@@ -52,7 +52,9 @@ class HomeContents(models.Model):
 	welcome_message = models.TextField()# Welcome message that explains the purpose of the page
 	about_image = models.ImageField(upload_to="home_images/", blank=True, null=True)
 	about_message = models.TextField() # About me description
-	
+	resume_image = models.FileField(upload_to="home_images/", blank=True, null=True)
+	github = models.TextField(null=False, blank=False)
+	linkedIn=models.TextField(null=False, blank=False)
 
 	def __str__(self):
-		return "Home Page Singleton"
+		return "Home Page Singleton"	

@@ -2,6 +2,11 @@
 
 {% include "nav.html" %}
 
+{% load static %}
+
+<script type="module" src="{% static 'outJS/intro.js' %}"></script>
+<script type="module" src="{% static 'outJS/projectCards.js' %}"></script>
+
 <body data-view-mode="{{view_mode}}">
 
 	<div class="display">
@@ -56,19 +61,53 @@
 			</div>
 			<div id="project-grid">
 				{% for P in Projects %}
-				<div class="individual-project-card"  
-					style="background-image: url({{P.title_image.url}});">
+				<div class="individual-project-card"   style="background-image: url({{P.title_image.url}});">
+
+					<div class="project-overlay">
+
 						<div class="ipc-title">
 							{{P.title}}
 						</div>
+
+						<div class="ipc-details">
+							<p>{{ P.technologies }}</p>
+							<p>{{ P.date }}</p>
+							<p class="ipc-details-des">{{ P.project_description}}</p>
+							<a href="{% url 'project' project_id=P.id %}" class="details-link-wrapper">
+								<button class="details-link">View Full Project</button>
+							</a>
+						</div>
+
+					</div>
 				</div>
 				{% endfor %}
 			</div>
 		</section>
+		<section id="cta-footer-card">
+			<h2 class="cta-title">Connect & View My Work</h2>
 
-		<section id="resume-card">
-			<h1>Resume Card</h1>
+			<div id="cta-links-grid">
+
+				<a href="{{ HomeContent.github}}" class="cta-link github-cta">
+					<h3>GitHub Profile</h3>
+					<p>View source code and contributions.</p>
+				</a>
+
+				<a href="{{ HomeContent.linkedin}}"  class="cta-link linkedin-cta">
+					<h3>LinkedIn</h3>
+					<p>Connect and see my professional history.</p>
+				</a>
+
+				<a href="{{HomeContent.resume_image.url}}" target="_blank" class="cta-link resume-cta">
+					<h3>View/Download Resume</h3>
+					<p>Opens my resume PDF in a new window.</p>
+				</a>
+
+			</div>
 		</section>
+
+
+
 		{% endif %}
 	</div>
 </body>
