@@ -112,8 +112,9 @@
 #UX-prompt-container {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
+	min-height: 150px;
 }
 
 
@@ -599,13 +600,30 @@
 /* Hover Effect */
 .cta-link:hover {
     transform: translateY(-5px); /* Subtle lift */
-    box-shadow: 0 10px 20px rgba(163, 36, 36, 0.6); /* Accent-colored shadow */
+    box-shadow: 0 10px 20px rgba(163, 36, 36, 0.6);
 }
 
 /* Mobile Responsiveness: Stacks cards vertically */
 @media (max-width: 768px) {
-    #cta-links-grid {
+	 #cta-links-grid {
         flex-direction: column;
         padding: 0 1rem;
+        
+        gap: 20px; 
+        justify-content: flex-start;
+        align-items: center; 
     }
+    
+    .cta-link {
+        flex: 1 1 auto; 
+        width: 100%; 
+        max-width: 400px; 
+        text-align: center; 
+        align-items: center;
+    }
+    
+    .cta-link p {
+        text-align: center;
+    }
+
 }

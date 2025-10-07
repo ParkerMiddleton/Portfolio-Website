@@ -4,7 +4,7 @@
  */
 
 // intro text
-let messages = ["Hi! Thanks for checking out my website!"
+let messages = ["Hello!","Thanks for checking out my website"
 	, "Please chose your viewing preference!"];
 
 //variable typing speeds to mimic natual cadence of typing
@@ -47,6 +47,10 @@ window.addEventListener("DOMContentLoaded", async () => {
 		await playMessages();
 
 		currentViewMode = UX;
+		const promptContainer = document.getElementById("UX-prompt-container");
+		if(promptContainer){
+			promptContainer.classList.add("isHidden");
+		}
 	}
 	//Display Welcome Card Data
 	const welcomeTitle = document.getElementById("welcome-title");
