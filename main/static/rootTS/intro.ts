@@ -5,8 +5,8 @@
 
 // intro text
 let messages = ["Hello!", "Thanks for checking out my website"
-	, "Please chose your viewing preference!"];
-let recruiterMessages = ["Thanks for your time!", "Below is a condensed version of my online portfolio", "Enjoy!"]
+	, "Please select your viewing preference!"];
+let recruiterMessages = ["Thanks for your time!", "Below, you'll find a condensed version of my online portfolio.", "Enjoy!"]
 
 //variable typing speeds to mimic natual cadence of typing
 const typing_speeds = [50, 20, 43, 66, 100, 5, 10, 33, 90];
@@ -332,7 +332,7 @@ async function displayViewerOptions(): Promise<string> {
 async function playMessages(): Promise<void> {
 	for (let phrase of messages) {
 		await type(phrase);
-		if (phrase == "Please chose your viewing preference!") {
+		if (phrase == "Please select your viewing preference!") {
 			UX = await displayViewerOptions();
 			console.log('Viewing Mode:', UX);
 
