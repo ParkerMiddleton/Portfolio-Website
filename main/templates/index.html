@@ -14,7 +14,6 @@
 		<!-- Both Views -->
 		<section id="welcome-card" tabindex="0" hidden="false">
 
-
 			<div id="particles-js"></div>
 
 
@@ -48,7 +47,7 @@
 			</div>
 			<div id="project-grid">
 				{% for P in Projects %}
-				<div class="individual-project-card"  style="background-image: url({{P.title_image.url}});">
+				<div class="individual-project-card" style="background-image: url({{P.title_image.url}});">
 
 					<div class="project-overlay">
 
@@ -57,10 +56,9 @@
 						</div>
 
 						<div class="ipc-details">
-							<p>{{ P.technologies }}</p>
-							<p>{{ P.date }}</p>
+							<p><strong>Tech:</strong> {{ P.technologies }}</p>
+							<p><strong>Date:</strong> {{ P.date }}</p>
 							<p class="ipc-details-des">{{ P.project_description}}</p>
-							<p>Key Concepts</p>
 							<ul>
 								{% for concept in P.design_concepts.all %}
 								<li>{{concept.title}}</li>
@@ -101,7 +99,7 @@
 			</div>
 		</section>
 
-		
+
 
 
 		<!-- Both views -->

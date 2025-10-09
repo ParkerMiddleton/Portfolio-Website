@@ -6,6 +6,7 @@
 // intro text
 let messages = ["Hello!", "Thanks for checking out my website"
 	, "Please chose your viewing preference!"];
+let recruiterMessages = ["Thanks for your time!", "Below is a condensed version of my online portfolio", "Enjoy!"]
 
 //variable typing speeds to mimic natual cadence of typing
 const typing_speeds = [50, 20, 43, 66, 100, 5, 10, 33, 90];
@@ -41,48 +42,69 @@ window.addEventListener("DOMContentLoaded", async () => {
 	const body = document.body;
 	let currentViewMode: string | null = body.dataset.viewMode || null;
 	const needsIntro = !currentViewMode;
+	let promptContainer: HTMLElement | null = null;
+	console.log("current view mode: " + currentViewMode);
+	console.log("needs intro? : " + needsIntro);
+
+	const welcome = document.getElementById("welcome-title");
+	const name_ = document.getElementById("welcome-name");
+	const content = document.getElementById("welcome-contents");
 
 	/**
-	 * If no role is set, then we have no session data.
-	 * Therefore play the opening monologue
+	 * Needs intro signifies an initial load where the current role is "null"
+	 * Otherwise its just a reload when a user is already logged in
+	 * Recruiter or Casual
 	 */
 	if (needsIntro) {
-
 		// 1. Create and insert the dynamic elements into the DOM
-		const promptContainer = createPromptContainer();
+		promptContainer = createPromptContainer();
 		if (promptContainer) {
 			onInitialPageLoad();
 			await playMessages();
-			promptContainer.remove();
 			currentViewMode = UX;
 		} else {
 			// If promptContainer failed to create, we can't run the intro.
 			currentViewMode = currentViewMode || "Casual";
 		}
+
+		// Regardless of whether intro ran or not, apply the final view mode
+		const finalMode = currentViewMode || "Casual";
+
+		// Since the prompt container is gone, reveal the static elements that were hidden
+		// Only show these elements if the intro was needed and completed
+		if (finalMode === "Recruiter") {
+			DisplayRecruiterViews();
+			await playRecruiterMessages();
+			if (promptContainer) {
+				promptContainer.remove();
+			}
+
+			if (welcome) welcome.hidden = false;
+			if (name_) name_.hidden = false;
+			if (content) content.hidden = false;
+
+		} else {
+			if (promptContainer) {
+				promptContainer.remove();
+			}
+			if (welcome) welcome.hidden = false;
+			if (name_) name_.hidden = false;
+			if (content) content.hidden = false;
+			DisplayCasualViews();
+		}
 	}
-
-	console.log("current view mode: " + currentViewMode);
-
-	// Regardless of whether intro ran or not, apply the final view mode
-	const finalMode = currentViewMode || "Casual";
-
-	// Since the prompt container is gone, reveal the static elements that were hidden
-	const welcome = document.getElementById("welcome-title");
-	const name_ = document.getElementById("welcome-name");
-	const content = document.getElementById("welcome-contents");
-
-	// Only show these elements if the intro was needed and completed
-	if (finalMode == "Recruiter" || finalMode == "Casual") {
-		if (welcome) welcome.hidden = false;
-		if (name_) name_.hidden = false;
-		if (content) content.hidden = false;
-	}
-
-	if (finalMode === "Recruiter") {
+	else if (currentViewMode == "Recruiter") {
 		DisplayRecruiterViews();
-	} else {
+	}
+	else {
 		DisplayCasualViews();
 	}
+	if (welcome) welcome.hidden = false;
+	if (name_) name_.hidden = false;
+	if (content) content.hidden = false;
+
+
+
 
 
 
@@ -156,7 +178,6 @@ function onInitialPageLoad() {
 	}
 }
 
-
 /**
  * Toggles cards hidden=False that are available for casual viewers
  */
@@ -221,7 +242,7 @@ function DisplayRecruiterViews() {
 
 				if (response.ok) {
 					console.log("Successful switch to Standard, reloading page");
-					window.location.href = window.location.pathname + '#'; 
+					window.location.href = window.location.pathname + '#';
 					window.location.reload();
 
 				} else {
@@ -235,8 +256,6 @@ function DisplayRecruiterViews() {
 	}
 
 }
-
-
 
 /**
  * Displays two buttons determining the UX
@@ -316,10 +335,21 @@ async function playMessages(): Promise<void> {
 		if (phrase == "Please chose your viewing preference!") {
 			UX = await displayViewerOptions();
 			console.log('Viewing Mode:', UX);
-			if (typingEl)
-				typingEl.innerHTML = "";
-			return
+
+			if (UX == "Casual") {
+				if (typingEl)
+					typingEl.innerHTML = "";
+				return;
+			}
 		}
+		await new Promise(res => setTimeout(res, pauseTime));
+		await delete_word();
+	}
+}
+
+async function playRecruiterMessages(): Promise<void> {
+	for (let phrase of recruiterMessages) {
+		await type(phrase);
 		await new Promise(res => setTimeout(res, pauseTime));
 		await delete_word();
 	}

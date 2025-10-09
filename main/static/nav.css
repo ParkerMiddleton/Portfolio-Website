@@ -72,3 +72,8 @@
 	border-radius: 4px;
 	width: 100%;
 }
+#navbar ul li:hover > ul {
+    opacity: 1; /* Makes the list visible */
+    transform: translateY(0); /* Moves the list into place */
+    pointer-events: auto; /* Allows links to be clickable */
+}

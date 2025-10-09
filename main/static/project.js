@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(error => {
       const codeEl = document.getElementById("GHCode");
-      codeEl.textContent = "Failed to load code.";
+      codeEl.textContent = "This repository has to be private in accordance with the University of Utah";
       console.error("Error fetching code:", error);
     });
 
