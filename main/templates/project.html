@@ -25,11 +25,12 @@
 				<div class="summary-right">
 					<div class="demo-video-wrapper">
 						<iframe src="https://www.youtube.com/embed/{{ Active_Project.demo_ID }}" frameborder="0"
-							allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="no-referrer-when-downgrade"></iframe>
+							allowfullscreen
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+							referrerpolicy="no-referrer-when-downgrade"></iframe>
 					</div>
 				</div>
 			</div>
-
 		</section>
 
 		<section class="design-card">
@@ -57,8 +58,8 @@
 				<button class="design-carousel-arrow right" onclick="nextSlide()">&#10095;</button>
 			</div>
 		</section>
-<!-- 
-	
+
+
 		<section class="code-card">
 			<h2 class="code-card-title"><code>Show me the code...</code></h2>
 			<div class="code-box">
@@ -68,30 +69,16 @@
 				</nav>
 				<pre><code id="GHCode" class="language-csharp"></code></pre>
 			</div>
-		</section> -->
-
-<!-- 
-		<section class="reflection-card">
-			<h2 class="reflection-card-title">Project Reflection & Takeaways</h2>
-			<div class="reflection-card-content">
-				<div class="reflection-left">
-					<div class="reflection-card-text">
-						{{Active_Project.reflection}}
-					</div>
-				</div>
-				<div class="reflection-right">
-					<div class="reflection-card-image-wrapper"><img src="{{Active_Project.reflection_image.url}}"
-							alt="Reflective Image"></div>
-				</div>
-			</div>
-		</section> -->
+		</section>
 
 		{% if next_project %}
 		<section class="next-project-card">
 			<div class="next-project-button-wrapper">
 				<a href="{% url 'project' next_project.id %}" class="next-project-button">
-					<span class="next-project-label">Next Project:</span>
-					<span class="next-project-title">{{ next_project.title }}</span>
+					<div class="next-project-content">
+						<span class="next-project-label">Next Project:</span>
+						<span class="next-project-title">{{ next_project.title }}</span>
+					</div>
 					<span class="next-project-arrow">→</span>
 				</a>
 			</div>

@@ -11,18 +11,21 @@ let messages = ["Hello!", "Thanks for checking out my website"
 const typing_speeds = [50, 20, 43, 66, 100, 5, 10, 33, 90];
 const deleting_speeds = [5, 19, 6, 10, 22];
 
+// For annimations, assigned later
+let typingEl: HTMLElement | null
+
 // pause after typing before deleting
 const pauseTime = 1500;
-//For animations
-const typingEl = document.getElementById("typing-text");
 
 //Card Elements
 const navbar = document.getElementById("navbar");
 const welcomeCard = document.getElementById("welcome-card");
 const aboutCard = document.getElementById("about-card");
 const projectDisplayCard = document.getElementById("project-display-card");
-const resumeCard = document.getElementById("resume-card");
 const welcomeTitle = document.getElementById("welcome-title"); // Used as insertion point
+const ceSection = document.getElementById("ce-section");
+const dtpSection = document.getElementById("dtp-section");
+const ctaFooter = document.getElementById("cta-footer-card");
 
 
 //For storing choice of website role
@@ -47,7 +50,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
 		// 1. Create and insert the dynamic elements into the DOM
 		const promptContainer = createPromptContainer();
-
 		if (promptContainer) {
 			onInitialPageLoad();
 			await playMessages();
@@ -57,9 +59,10 @@ window.addEventListener("DOMContentLoaded", async () => {
 			// If promptContainer failed to create, we can't run the intro.
 			currentViewMode = currentViewMode || "Casual";
 		}
-
-
 	}
+
+	console.log("current view mode: " + currentViewMode);
+
 	// Regardless of whether intro ran or not, apply the final view mode
 	const finalMode = currentViewMode || "Casual";
 
@@ -69,7 +72,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 	const content = document.getElementById("welcome-contents");
 
 	// Only show these elements if the intro was needed and completed
-	if (needsIntro) {
+	if (finalMode == "Recruiter" || finalMode == "Casual") {
 		if (welcome) welcome.hidden = false;
 		if (name_) name_.hidden = false;
 		if (content) content.hidden = false;
@@ -81,7 +84,11 @@ window.addEventListener("DOMContentLoaded", async () => {
 		DisplayCasualViews();
 	}
 
+
+
 });
+
+
 
 /**
  * Creates, inserts, and manages the entire UX prompt container (typing text and buttons).
@@ -93,7 +100,7 @@ function createPromptContainer(): HTMLElement | null {
 		return null;
 	}
 
-	// 1. Create the top-level container: #UX-prompt-container
+	//Create the parent container: #UX-prompt-container
 	const promptContainer = document.createElement("div");
 	promptContainer.id = "UX-prompt-container";
 
@@ -101,29 +108,28 @@ function createPromptContainer(): HTMLElement | null {
 	const welcomeTextH2 = document.createElement("h2");
 	welcomeTextH2.id = "welcome-text";
 
-	const typingSpan = document.createElement("span");
-	typingSpan.id = "typing-text"; // Set global reference to this ID
+	typingEl = document.createElement("span");
+	typingEl.id = "typing-text";
 
-	const cursorSpan = document.createElement("span");
-	cursorSpan.id = "cursor";
+
 
 	// 3. Create the buttons container: #Choose-UX
 	const chooseUXDiv = document.createElement("div");
 	chooseUXDiv.id = "Choose-UX";
 
 	// Assemble the typing elements
-	welcomeTextH2.appendChild(typingSpan);
-	welcomeTextH2.appendChild(cursorSpan);
+	welcomeTextH2.appendChild(typingEl);
 
 	// Assemble the prompt container
 	promptContainer.appendChild(welcomeTextH2);
 	promptContainer.appendChild(chooseUXDiv);
 
 	// Insert the new container right after the main title
-	welcomeCard.insertBefore(promptContainer, welcomeTitle.nextSibling);
+	welcomeCard.insertBefore(promptContainer, welcomeTitle);
 
 	return promptContainer;
 }
+
 
 
 /**
@@ -139,8 +145,14 @@ function onInitialPageLoad() {
 	if (projectDisplayCard) {
 		projectDisplayCard.classList.add("isHidden");
 	}
-	if (resumeCard) {
-		resumeCard.classList.add("isHidden");
+	if (ceSection) {
+		ceSection.classList.add("isHidden");
+	}
+	if (dtpSection) {
+		dtpSection.classList.add("isHidden");
+	}
+	if (ctaFooter) {
+		ctaFooter.classList.add("isHidden");
 	}
 }
 
@@ -158,8 +170,14 @@ function DisplayCasualViews() {
 	if (projectDisplayCard) {
 		projectDisplayCard.classList.add("isHidden");
 	}
-	if (resumeCard) {
-		resumeCard.classList.add("isHidden");
+	if (ceSection) {
+		ceSection.classList.add("isHidden");
+	}
+	if (dtpSection) {
+		dtpSection.classList.remove("isHidden");
+	}
+	if (ctaFooter) {
+		ctaFooter.classList.remove("isHidden");
 	}
 }
 
@@ -176,8 +194,44 @@ function DisplayRecruiterViews() {
 	if (projectDisplayCard) {
 		projectDisplayCard.classList.remove("isHidden");
 	}
-	if (resumeCard) {
-		resumeCard.classList.remove("isHidden");
+	if (ceSection) {
+		ceSection.classList.remove("isHidden");
+	}
+	if (dtpSection) {
+		dtpSection.classList.add("isHidden");
+	}
+	if (ctaFooter) {
+		ctaFooter.classList.remove("isHidden");
+	}
+
+	const standardModeSwitcher = document.getElementById("switch-to-standard-button");
+
+	if (standardModeSwitcher) {
+		standardModeSwitcher.addEventListener('click', async () => {
+			let standard: string = "Casual";
+			try {
+
+				const response = await fetch(SET_MODE_URL, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ mode: standard })
+				});
+
+				if (response.ok) {
+					console.log("Successful switch to Standard, reloading page");
+					window.location.href = window.location.pathname + '#'; 
+					window.location.reload();
+
+				} else {
+					console.log("Failed to save the new view mode. Status: " + response.status);
+				}
+
+			} catch (error) {
+				console.error("Network or fetch error occured during view mode switch: ", error);
+			}
+		})
 	}
 
 }
@@ -221,7 +275,6 @@ async function displayViewerOptions(): Promise<string> {
 		//Cleans up buttons then returns the resolve after click.
 		const cleanupAndResolve = async (value: string) => {
 			if (ChooseUX) {
-
 				try {
 					await fetch(SET_MODE_URL, {
 						method: 'POST',

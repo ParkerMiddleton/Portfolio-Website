@@ -8,38 +8,25 @@
 <script type="module" src="{% static 'outJS/projectCards.js' %}"></script>
 
 <body data-view-mode="{{view_mode}}">
-
 	<div class="display">
-		<!-- particles.js container -->
-
-
-
 		{% if HomeContent %}
 
 		<!-- Both Views -->
 		<section id="welcome-card" tabindex="0" hidden="false">
-			<div id="particles-js">
-			</div>
+
+
+			<div id="particles-js"></div>
 
 
 			<h1 id="welcome-title" hidden="true">
 				<span id="line">Digital</span>
 				<span id="line">Portfolio</span>
 			</h1>
-			<div id="UX-prompt-container">
-				<h2 id="welcome-text">
-					<span id="typing-text"></span>
-					<span id="cursor"></span>
-				</h2>
-				<!-- UX button prompts -->
-				<div id="Choose-UX"></div>
-			</div>
 			<h4 id="welcome-name" hidden="true">Parker Middleton</h4>
 			<div id="welcome-contents" hidden="true">
 				{{HomeContent.welcome_message|safe}}
 			</div>
 		</section>
-
 
 		<!-- Both Views -->
 		<section id="about-card">
@@ -54,14 +41,14 @@
 			</div>
 		</section>
 
-		<!-- Recruiter Only -->
+		<!-- Recruiter View -->
 		<section id="project-display-card">
 			<div id="project-display-card-title">
 				Project Snapshot
 			</div>
 			<div id="project-grid">
 				{% for P in Projects %}
-				<div class="individual-project-card"   style="background-image: url({{P.title_image.url}});">
+				<div class="individual-project-card"  style="background-image: url({{P.title_image.url}});">
 
 					<div class="project-overlay">
 
@@ -73,16 +60,51 @@
 							<p>{{ P.technologies }}</p>
 							<p>{{ P.date }}</p>
 							<p class="ipc-details-des">{{ P.project_description}}</p>
-							<a href="{% url 'project' project_id=P.id %}" class="details-link-wrapper">
-								<button class="details-link">View Full Project</button>
-							</a>
+							<p>Key Concepts</p>
+							<ul>
+								{% for concept in P.design_concepts.all %}
+								<li>{{concept.title}}</li>
+								{% endfor %}
+							</ul>
 						</div>
-
 					</div>
 				</div>
 				{% endfor %}
 			</div>
 		</section>
+
+		<!-- Recruiter View -->
+		<!-- CE = Continue Experiece -->
+		<section id="ce-section">
+			<h2 id="ce-title">Wanna Dive Deeper?</h2>
+			<div id="ce-card">
+				<p class="ce-description">
+					This is just the gist, but your journey shouldn't stop here.
+					<br>The Standard View unlocks the full narrative.
+				</p>
+				<div class="ce-features-list">
+					<span>Video Walkthroughs</span>
+					<span>Design Concepts</span>
+					<span>Key Code Files</span>
+				</div>
+				<button id="switch-to-standard-button">Standard View</button>
+			</div>
+		</section>
+
+		<!-- Standard View -->
+		<!-- direct to project section -->
+		<section id="dtp-section">
+			<div id="particles-js"></div>
+			<h2 id="dtp-title">Check out my projects!</h2>
+			<div id="dtp-button-wrapper">
+				<a href="{% url 'project' project_id=1%}"><button>Lets Go</button></a>
+			</div>
+		</section>
+
+		
+
+
+		<!-- Both views -->
 		<section id="cta-footer-card">
 			<h2 class="cta-title">Connect & View My Work</h2>
 
@@ -93,7 +115,7 @@
 					<p>View source code and contributions.</p>
 				</a>
 
-				<a href="{{ HomeContent.linkedin}}"  class="cta-link linkedin-cta">
+				<a href="{{ HomeContent.linkedIn}}" class="cta-link linkedin-cta">
 					<h3>LinkedIn</h3>
 					<p>Connect and see my professional history.</p>
 				</a>
@@ -105,8 +127,6 @@
 
 			</div>
 		</section>
-
-
 
 		{% endif %}
 	</div>

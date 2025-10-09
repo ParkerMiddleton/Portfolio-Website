@@ -72,10 +72,3 @@
 	border-radius: 4px;
 	width: 100%;
 }
-
-/* Show dropdown on hover */
-#navbar ul li:hover>ul {
-	opacity: 1;
-	transform: translateY(0);
-	pointer-events: auto;
-}
