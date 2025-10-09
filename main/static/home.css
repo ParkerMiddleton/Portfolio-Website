@@ -493,6 +493,8 @@ body {
 	display: flex;
 	align-items: center;
 	text-align: left;
+
+	font-size: clamp(2rem, 3vw, 2.25rem); 
 }
 
 .individual-project-card:hover {
@@ -587,6 +589,7 @@ body {
 	height: auto;
 	padding-bottom: 5px;
 	background: transparent;
+	font-size: clamp(1.6rem, 4vw, 2.25rem); 
 }
 
 
